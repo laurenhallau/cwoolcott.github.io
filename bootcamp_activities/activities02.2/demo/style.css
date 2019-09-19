@@ -1,0 +1,67 @@
+/*Notes: p family ""Lucida Sans Unicode", weight, size, line-height*/
+
+p {
+    font-family: 'Rubik', sans-serif;
+    color: red;
+    font-weight: bold
+}
+p:hover{
+    color:teal;
+}
+.link1 {
+    text-decoration: none;
+}
+.link1:hover{
+    color:orange;
+    text-decoration: underline;
+}
+
+.link1:active{
+    background-color:black;
+}
+
+button {
+    background-color:gray;
+    padding:10px;
+    font-size:16px;
+    color:white
+
+}
+
+button:hover{
+    background-color:red;
+    cursor: grabbing
+}
+
+ button:active {
+     background-color: fuchsia
+ }
+
+ .textbox1:hover{
+    background-color:blue;
+    color:yellow
+ }
+
+
+ .textbox1:focus{
+    background-color:black;
+    color:white
+ }
+
+.thought1 {
+    color:fuchsia;
+    font-family: 'Bungee Shade', cursive;
+}
+
+.thought2{
+    font-weight: bolder;
+}
+
+.thought3{
+    font-size:20px;
+    line-height:30px;
+}
+
+.fa-snowflake-o{
+    font-size:120px
+}
