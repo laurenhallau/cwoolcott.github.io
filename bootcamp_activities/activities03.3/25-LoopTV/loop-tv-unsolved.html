@@ -8,24 +8,26 @@
 
     <script type="text/javascript">
 
-      // ????
-      var favTVshows = [];
+      // init two variables
+      var favTVshows;
       var tvShow;
 
-      // For Loop Elements Repeats ??? Times
+      // For Loop Elements Repeats 3 Times
       for (var i = 1; i < 4; i++) {
 
-        // ????
+        // first, second, third
         tvShow = prompt("What's your #" + i + " favorite TV show?");
 
-        // ????
-        favTVshows.push(tvShow);
+        // adds to array
+      
+        favTVshows[i] = tvShow;
+       //favTVshows = ["The Simpsons", "Alf", "Breaking Bad"]
       }
 
-      // ????
+      // Three Times
       for (var j = 0; j < favTVshows.length; j++) {
 
-        // ???
+        // Alerts all three
         alert(favTVshows[j]);
       }
 

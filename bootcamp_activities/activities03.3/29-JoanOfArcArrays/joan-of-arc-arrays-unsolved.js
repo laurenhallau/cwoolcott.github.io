@@ -1,11 +1,17 @@
-// Joan of Arc "properties".
-var joanOfArcInfoParts = ["Real Name", "Grew Up Where", "Known For", "Scars", "Symbolism"];
 
-// Values for Joan's "properties".
-var joanOfArcInfoValues = [
-  "Jehanne la Pucelle.",
-  "Domremy, a village in northeastern France.",
-  "Peasant girl, daughter of a farmer, who rose to become Commander of the French army.",
-  "Took an arrow to the shoulder and a crossbow bolt to the thigh while trying to liberate Paris.",
-  "Stands for French unity and nationalism."
-];
+
+var myRx = {
+  "color" : "red",
+  "make"  : "Mazda",
+  "model" : "Rx-7",
+  "year"  : "1985",
+  "yearsOwned"  : 7,
+  "condition now" : "good" 
+}
+
+console.log(myRx.color);
+console.log(myRx.year);
+
+console.log(myRx["condition now"]);
+
+

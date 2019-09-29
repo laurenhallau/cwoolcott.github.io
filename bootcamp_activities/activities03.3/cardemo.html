@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>My First Object</title>
+  </head>
+  <body>
+
+    <img src="" id="image" style="width:360px">
+    <div>
+        <h1 id="header"></h1>
+        <h2 id="description"></h2>
+        <h3 id="forSaleStatus" style="color:green"></h3>
+        <h3 id="notForSaleStatus" style="color:red"></h3>
+        <hr>
+    </div>
+
+    <script>
+
+
+        var displayCar = {
+            "color" : "red",
+            "make"  : "Mazda",
+            "model" : "Rx-7",
+            "year"  : "1985",
+            "yearsOwned"  : 7,
+            "condition" : "good",
+            "forSale" : true,
+            "seats" : [
+                "front-left",
+                "front-right"
+            ],
+            "engine" : {
+                "type" : "rotary",
+                "speed" : "supa-fast"
+            },
+            "image" : "https://cdn.dealeraccelerate.com/flemings/1/2081/44135/790x1024/1985-mazda-rx7",
+            "makeNoise" : function(){
+                alert("Honk!");
+            },
+            "startCar" : function(){
+                alert(this.make + " Vrrrmmm!");
+            }
+        }
+
+        // var displayCar = {
+        //     "color" : "blue",
+        //     "make"  : "Toyota",
+        //     "model" : "Camry",
+        //     "year"  : "2000",
+        //     "yearsOwned"  : 1,
+        //     "condition" : "excellent",
+        //     "seats" : [
+        //         "front-left",
+        //         "front-right",
+        //         "rear-left",
+        //         "rear-right"
+        //     ],
+        //     "engine" : {
+        //         "type" : "4 Cylinder",
+        //         "speed" : "Kinda Slow"
+        //     },
+        //     "image" : "https://imagescdn.dealercarsearch.com/Media/15642/12875212/636955911590296126.jpg"
+        // }
+
+
+
+        document.getElementById("image").src = displayCar.image;
+        document.getElementById("header").innerHTML = displayCar.year + " " + displayCar.make + " " + displayCar.model;
+        
+        var description = "This is a " + displayCar.condition + 
+        " car. The Previous owner had the car for " + displayCar.yearsOwned + "-Year(s). " +
+        "<br>It is " + displayCar.engine.speed + ", because it has a " +  displayCar.engine.type + " Engine.";        
+        
+        document.getElementById("description").innerHTML = description;
+
+        if (displayCar.forSale){
+            document.getElementById("forSaleStatus").innerHTML = "THIS IS FOR SALE!!!";
+        }
+        else{
+            document.getElementById("notForSaleStatus").innerHTML = "Sorry, not for sale.";
+        }
+
+        //displayCar.makeNoise();
+        displayCar.startCar();
+
+</script>
+</body>
+</html>
+
+
+
+
