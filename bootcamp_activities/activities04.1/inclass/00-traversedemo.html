@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sample Page</title>
+
+</head>
+<body>
+  <div id="title">
+    <span>Home</span> > <span>This Section</span> > <span>This Page</span>
+  </div>
+  <div id="main">
+    <h1>This a Header <span>This</span> <span>That</span></h1>
+    <h2>This is a Sub-Header</h2>
+  </div>
+  <div id="articles">
+    <article>
+      <img id="articleImage1">
+      <a href="index.html" id="link">Something Interesting</a>
+      <h4 class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquet vestibulum mi, in auctor neque sagittis ut. Nullam ultrices vel orci vel varius. Aliquam ullamcorper libero ac arcu pretium porttitor. Ut ultricies sem vel nisi aliquam, sed fringilla nunc tempus. Donec porta enim sed est tempor, eget eleifend erat imperdiet. 
+      </h4>
+    </article>
+    <article>
+      <h3>Something Else Interesting</h3>
+      <h4 class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquet vestibulum mi, in auctor neque sagittis ut. Nullam ultrices vel orci vel varius. Aliquam ullamcorper libero ac arcu pretium porttitor. Ut ultricies sem vel nisi aliquam, sed fringilla nunc tempus. Donec porta enim sed est tempor, eget eleifend erat imperdiet. 
+      </h4>
+    </article>
+  </div>
+
+    <script>
+    // Demo firstElementChild, lastElementChild, children[0], 
+    // childNodes[1], previousElementSibling...
+    // Demo document.querySelector vs document.querySelectorAll Node List [0]
+    // Demo .setAttribute vs the .style 
+    var textArea = document.querySelectorAll(".text")[1];
+    // var titleDiv = document.querySelectorAll("#main")[0];
+    // var titleDiv = document.getElementById("title");
+    //  var mainDiv = document.getElementById("main");
+    // var articlesDiv = document.getElementById("articles");
+    // var articleImage1 = document.getElementById("articleImage1");
+    // var link = document.getElementById("link");
+
+
+    textArea.style.color = "red";
+
+
+    link.setAttribute("href", "somewhere.html");
+    articleImage1.setAttribute("src", "images/image_1.jpg");
+    articleImage1.setAttribute("alt", "Some Person in Blue");
+
+    titleDiv.setAttribute("style", "border:1px solid black; color: green");
+    // console.log(document.body.children[2].children[1])
+
+    // mainDiv.style.color = "red";
+    // mainDiv.children[0].style.color = "blue";
+    // articlesDiv.children[1].style.fontSize = "30px";
+
+
+    // articlesDiv.firstElementChild.style.color = "fuchsia";
+
+
+    // mainDiv.children[0].childNodes[1].style.color = "red";
+    // mainDiv.children[1].style.color = "blue";
+    // mainDiv.children[0].style.fontSize = "50px";
+    // mainDiv.previousElementSibling.style.background = "blue";
+
+    // articlesDiv.children[0].style.textDecoration = "underline";
+    // articlesDiv.lastElementChild.style.fontSize = "50px";
+    // articlesDiv.firstElementChild.style.color = "white";
+
+    /*
+    If you need to get all content, including stuff that’s not wrapped in an element, use .childNodes. Otherwise, use .children.
+    */
+
+  </script>
+</body>
+</html>

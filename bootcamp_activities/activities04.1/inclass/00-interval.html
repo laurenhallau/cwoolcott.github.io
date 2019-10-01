@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+  </head>
+
+  <body>
+
+    <div id="show-number"></div>
+    <br>
+    <button id="buttonStop">Stop</button>
+    <button id="buttonRun">Run</button>
+
+    <script type="text/javascript">
+
+     //  The decrement function.
+     function decrement() {
+
+        number--;
+
+        //  Show the number in the #show-number tag.
+        document.getElementById("show-number").innerHTML = "<h2>" + number + "</h2>";
+
+        //  Once number hits zero...
+        if (number === 0) {
+          stop();
+          alert("Time Up!");
+        }
+      }
+
+      //  The stop function
+      function stop() {
+        //  Clears our intervalId
+        //  We just pass the name of the interval
+        //  to the clearInterval function.
+        clearInterval(intervalId);
+      }
+
+      //  The run function sets an interval
+      function run() {
+        //Reset
+        number = 100;
+        document.getElementById("show-number").innerHTML = "<h2>" + number + "</h2>";
+        clearInterval(intervalId);
+        intervalId = setInterval(decrement, 1000);
+      }
+
+      document.getElementById("buttonStop").onclick = function() { stop() };
+      document.getElementById("buttonRun").onclick = function() { run() };
+
+      //  Set our number counter to 100.
+      var number = 100;
+
+      //  Variable that will hold our interval ID when we execute
+      //  the "run" function
+      var intervalId;
+
+      //  Execute the run function.
+      run();
+    
+    </script>
+
+  </body>
+
+</html>

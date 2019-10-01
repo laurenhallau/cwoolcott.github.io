@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple Clock</title>
+</head>
+<body>
+<p id="demo"></p>
+<script>
+var myVar = setInterval(myTimer, 1000);
+
+
+function myTimer() {
+    var d = new Date();
+    //console.log(d);
+    document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+}
+</script>
+</body>
+</html>

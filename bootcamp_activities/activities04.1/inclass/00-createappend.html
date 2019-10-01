@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sample Create and Append</title>
+
+</head>
+<body>
+
+
+    <script>
+    // Demo create append
+    var someDiv = document.createElement("header");
+    someDiv.innerHTML = "Hi My Name is.... ";
+    someDiv.style.color = "red";
+    
+
+    var anotherDiv = document.createElement("div");
+    anotherDiv.innerHTML = "Slim Shady";
+
+    document.body.appendChild(someDiv);
+    document.body.appendChild(anotherDiv);
+
+
+    // someDiv.innerHTML = "Hi There";
+    // someDiv.style.color = "red";
+    // someDiv.style.fontSize = "50px";
+    // someDiv.setAttribute("class","someClass")
+    // document.body.appendChild(someDiv);
+
+  </script>
+</body>
+</html>
