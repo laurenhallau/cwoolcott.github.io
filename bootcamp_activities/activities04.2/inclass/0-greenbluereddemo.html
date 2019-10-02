@@ -1,0 +1,41 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Red, Green, Blue</title>
+
+</head>
+<body>
+  <div>
+    <button id="greenBtn">Paint it Green</button>
+    <button id="blueBtn">Paint it Blue</button>
+    <button id="redBtn">Paint it Red</button>
+  </div>
+  <script>
+    var greenBtn = document.querySelector("#greenBtn");
+    var blueBtn = document.querySelector("#blueBtn");
+    var redBtn = document.querySelector("#redBtn");
+
+    greenBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+    document.body.style.backgroundColor = "green";
+    });
+
+    blueBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+    document.body.style.backgroundColor = "blue";
+    });
+
+    redBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+    document.body.style.backgroundColor = "red";
+    });
+  </script>
+</body>
+</html>
+
