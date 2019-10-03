@@ -12,17 +12,19 @@
 </head>
 <body>
   <div>
-    <button id="greenBtn">Paint it Green</button>
+    <form action="https://google.com">
+    <button id="greenBtn">Paint it Green2</button>
     <button id="blueBtn">Paint it Blue</button>
     <button id="redBtn">Paint it Red</button>
+  </form>
   </div>
   <script>
     var greenBtn = document.querySelector("#greenBtn");
     var blueBtn = document.querySelector("#blueBtn");
     var redBtn = document.querySelector("#redBtn");
 
-    greenBtn.addEventListener("click", function(event) {
-    event.preventDefault();
+    greenBtn.addEventListener("click", function() {
+
     document.body.style.backgroundColor = "green";
     });
 
