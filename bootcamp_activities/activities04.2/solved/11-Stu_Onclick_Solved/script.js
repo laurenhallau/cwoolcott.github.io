@@ -6,9 +6,14 @@ var count = 0;
 
 
 
-incrementEl.addEventListener("click", function() {
-  count++;
-  countEl.textContent = count;
+generatePassword.addEventListener("click", function() {
+
+
+generatePassword();
+
+
+
+
 });
 
 decrementEl.addEventListener("click", function() {

@@ -24,6 +24,8 @@ signUpButton.addEventListener("click", function(event) {
     email: emailInput.value.trim(),
     password: passwordInput.value.trim()
   };
+
+  console.log(user);
   
   // validate the fields
   if (user.firstName === "") {
@@ -38,12 +40,7 @@ signUpButton.addEventListener("click", function(event) {
     displayMessage("success", "Registered successfully");
 
     // set new submission
-    console.log(user);
-
- 
-
     localStorage.setItem("user", JSON.stringify(user));
-
     
     // get most recent submission
     var lastUser = JSON.parse(localStorage.getItem("user"));
