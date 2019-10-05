@@ -6,7 +6,7 @@ In this activity you will be writing code to render an array of todo items to th
 
 * Open the `script.js` file provided to you. You have been provided the necessary variable declarations as well as an array of todo items.
 
-* Your goal is to create a function that will render our todos into a list in the browser.
+* Your goal is to CREATE A FUNCTION that will render our todos into a list in the browser. Something like function renderTodos()
 
   * Initially set the text content of the todoList to an empty string.
   
@@ -19,3 +19,5 @@ In this activity you will be writing code to render an array of todo items to th
   * It should set the content of the created `li` element to the value of the current array index.
   
   * Finally the new `li` should be appended to the `ul` provided.
+
+  * Call your function

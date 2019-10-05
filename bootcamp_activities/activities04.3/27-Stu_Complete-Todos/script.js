@@ -18,6 +18,8 @@ function renderTodos() {
 
     var li = document.createElement("li");
     li.textContent = todo;
+
+
     todoList.appendChild(li);
   }
 }
@@ -40,3 +42,4 @@ todoForm.addEventListener("submit", function(event) {
   // Re-render the list
   renderTodos();
 });
+// When a element inside of the todoList is clicked...

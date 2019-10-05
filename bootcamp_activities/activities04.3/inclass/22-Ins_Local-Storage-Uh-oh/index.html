@@ -6,12 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./style.css" />
     <title>Auth Form</title>
-  </head>,z
+  </head>
   <body>
     <div class="clearfix">
       <div class="card">
         <h2>Sign Up</h2>
         <form method="POST">
+          <div class="input-group">
+            <label for="first-name">First Name</label>
+            <input type="text" name="first-name" id="first-name" placeholder="Jane" />
+          </div>
+          <div class="input-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" name="last-name" id="last-name" placeholder="Doe" />
+          </div>
           <div class="input-group">
             <label for="email">Email</label>
             <input type="text" name="email" id="email" placeholder="janedoe@mail.com" />
@@ -27,7 +35,10 @@
 
       <div class="card">
         <h2>Last Registered User:</h2>
-        <p><strong>User:</strong> <span id="user-creds"></span></p>
+        <p><strong>First Name:</strong> <span id="user-first-name"></span></p>
+        <p><strong>Last Name:</strong> <span id="user-last-name"></span></p>
+        <p><strong>Email:</strong> <span id="user-email"></span></p>
+        <p><strong>Password:</strong> <span id="user-password"></span></p>
       </div>
     </div>
     <script src="./script.js"></script>

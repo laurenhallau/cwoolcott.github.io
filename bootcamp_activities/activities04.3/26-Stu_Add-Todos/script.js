@@ -5,8 +5,6 @@ var todoCountSpan = document.querySelector("#todo-count");
 
 var todos = ["Learn HTML", "Learn CSS", "Learn JavaScript"];
 
-renderTodos();
-
 function renderTodos() {
   // Clear todoList element and update todoCountSpan
   todoList.innerHTML = "";
@@ -21,3 +19,5 @@ function renderTodos() {
     todoList.appendChild(li);
   }
 }
+
+renderTodos();

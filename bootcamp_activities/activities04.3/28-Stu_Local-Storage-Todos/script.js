@@ -18,6 +18,8 @@ function renderTodos() {
 
     var li = document.createElement("li");
     li.textContent = todo;
+
+
     todoList.appendChild(li);
   }
 }
@@ -27,7 +29,9 @@ function init() {
   // If so, parse the value from localStorage and assign it to the todos variable
 
   // Store updated todos in localStorage, re-render the list
-  storeTodos();
+
+
+  // Render todos to the DOM
   renderTodos();
 }
 
@@ -54,3 +58,4 @@ todoForm.addEventListener("submit", function(event) {
   storeTodos();
   renderTodos();
 });
+// When a element inside of the todoList is clicked...
