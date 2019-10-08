@@ -30,6 +30,16 @@
     // 1. Create code that "grabs" the div with the matching id (#drink-options);
     // ...
 
+    var targetDiv = document.getElementById("drink-options");
+
+    for (var i = 0; i < drinkList.length; i++){
+
+      var newDiv = document.createElement("div");
+
+      newDiv.innerHTML = drinkList[i];
+      targetDiv.appendChild(newDiv);
+    }
+
 
     // ...
 

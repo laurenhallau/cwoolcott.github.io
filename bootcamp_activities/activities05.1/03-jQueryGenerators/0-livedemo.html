@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Basic jQuery Dump</title>
+
+  <!-- Added link to the jQuery library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+  .fancy{
+    color:red;
+    background-color: blue;
+  }
+  </style>
+</head>
+<body>
+
+  <!-- Created an empty HTML div. Note that there is no content -->
+  <div id="empty-div"></div>
+
+  <script type="text/javascript">
+    $("#empty-div").text("THIS IS A DIV");
+
+    var newDiv = $("<div>");
+
+    newDiv.text("It's great to meet you!");
+    newDiv.attr("class","fancy");
+    newDiv.attr("data-whatever","123");
+    $("#empty-div").append(newDiv);
+
+
+
+  </script>
+
+</body>
+</html>

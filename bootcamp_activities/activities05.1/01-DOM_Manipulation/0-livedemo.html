@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Basic JavaScript Demo</title>
+</head>
+  <body>
+
+    <div id="empty-div"></div>
+
+    <script>
+        var targetDiv = document.getElementById("empty-div");
+
+        var carArray = ["Mazda", "Ford", "Chevy", "Pontiac"];
+
+        for (var i = 0; i < carArray.length; i++){
+
+            var newDiv = document.createElement("div");
+        
+            newDiv.innerHTML = carArray[i];
+            targetDiv.appendChild(newDiv);
+        }
+        
+        
+      
+        
+
+
+
+
+    </script>
+
+  </body>
+</html>
