@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		.coolBox{
+			color:white;
+			width:80px;
+			height:80px;
+			display:none;
+			font-weight: bold;
+			cursor: pointer;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+<p>Demonstrate fadeIn() with different parameters.</p>
+
+<button>Click to fade in boxes</button><br><br>
+
+<div id="div1" class="coolBox" style="background-color:red;">Red</div><br>
+<div id="div2" class="coolBox" style="background-color:green;">Green</div><br>
+<div id="div3" class="coolBox" style="background-color:blue;">Blue</div>
+<script>
+	/* Remember! jQuery works with/without the $(document).ready function; 
+	it just insures it will be loaded after everything else is*/
+
+	//$(document).ready(function(){
+	    $("button").click(function(){
+	        $("#div1").fadeIn();
+	        $("#div2").fadeIn("slow");
+	        $("#div3").fadeIn(3000);
+	    });
+
+		$( ".coolBox" ).click(function() {
+			alert($( this ).html());
+		});
+
+	//});
+</script>
+</body>
+</html>
