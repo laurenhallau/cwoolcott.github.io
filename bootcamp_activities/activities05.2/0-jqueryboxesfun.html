@@ -4,40 +4,105 @@
 	<style>
 		.coolBox{
 			color:white;
+			text-align: center;
 			width:80px;
-			height:80px;
+			min-height: 60px;
 			display:none;
 			font-weight: bold;
 			cursor: pointer;
+			padding-top:40px;
+			position: relative;
+			float:left;
 		}
+
+		.boxDelete{
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 
-<p>Demonstrate fadeIn() with different parameters.</p>
+<h1>Chris' Fun Box Demo</h1>
 
-<button>Click to fade in boxes</button><br><br>
+<button id="showBoxes">Show Boxes</button><button id="clearBoxes">Empty Boxes</button><br><br>
 
-<div id="div1" class="coolBox" style="background-color:red;">Red</div><br>
-<div id="div2" class="coolBox" style="background-color:green;">Green</div><br>
-<div id="div3" class="coolBox" style="background-color:blue;">Blue</div>
-<script>
+<div id="boxContainer">
+</div>
+
+ <script type="text/javascript">
+
+	function makeBoxes(boxes){
+
+		// This Randomizes the Order of the boxes array
+		boxes.sort(function() {
+		  return .5 - Math.random();
+		});
+
+		// This goes through each item in the array and creates unique boxes, attributes, classes, html, etc
+		for (var i = 0; i < boxes.length; i++){
+			
+			var newBox = $("<div>");
+			newBox.attr("id","div" + i);
+			newBox.data("coolname", "Mr. " + boxes[i]);
+			newBox.html(boxes[i] + " <span class='boxDelete' data-box-number='" + i + "'>[X]</span>");
+			newBox.addClass("coolBox");
+			newBox.css("background-color", boxes[i]);
+			$("#boxContainer").append(newBox);
+		}
+	}
 	/* Remember! jQuery works with/without the $(document).ready function; 
 	it just insures it will be loaded after everything else is*/
 
-	//$(document).ready(function(){
-	    $("button").click(function(){
-	        $("#div1").fadeIn();
-	        $("#div2").fadeIn("slow");
-	        $("#div3").fadeIn(3000);
-	    });
+	$(document).ready(function(){
 
-		$( ".coolBox" ).click(function() {
-			alert($( this ).html());
+		// Array of some Boxes
+		var boxes = ['pink', 'orange', 'brown']
+
+		// These Elements are Created after the page is rendered, 
+		// sometimes we need to change the scope to the entire document.
+		// Because jQuery doesn't know where to find them.
+	
+		$(document).on("click", ".boxDelete",  function(event) {
+			// On Click of [X] in Box we don't want the next event to bubble up
+			event.stopPropagation();
+			// Using Data is a better practice of using attributes that are internal functions
+			// this would be the equivilent of $(this).attr("data-box-number") 
+			// .remove() removes the element from the dom
+			$("#div" + $(this).data("box-number")).remove();
 		});
 
-	//});
+		$(document).on("click", ".coolBox",  function() {
+			//equivilent of $(this).attr("data-coolname")
+			alert("This Box is " + $(this).data("coolname"));
+		});
+
+		// Typical on Click Event Handling. Button Exists when Ready,
+		// Check out the Some Animate Functions of jQuery
+	    $("#showBoxes").on("click", function() {
+	    	makeBoxes(boxes);
+
+	    	for (var i = 0; i < boxes.length; i++){
+	    		var randomFade = Math.floor(Math.random() * 2000) + 1;
+	        	$("#div" + i).fadeIn(randomFade);
+	        	$("#div" + i).animate({"left": (randomFade/50) + "px"})
+	        	$("#div" + i).animate({
+					width: "100px",
+					height: "80px",    
+					}, randomFade);
+	    	}
+	    });
+
+
+	    $("#clearBoxes").on("click", function() {
+	    	//This Function deletes EVERYTHING within the ID 
+	    	$("#boxContainer").empty();
+	    });
+
+	});
 </script>
 </body>
 </html>
