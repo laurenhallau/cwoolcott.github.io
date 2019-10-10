@@ -47,10 +47,10 @@
 			
 			var newBox = $("<div>");
 			newBox.attr("id","div" + i);
-			newBox.data("coolname", "Mr. " + boxes[i]);
+			newBox.attr("data-coolname", "Mr. " + boxes[i]);
 			newBox.html(boxes[i] + " <span class='boxDelete' data-box-number='" + i + "'>[X]</span>");
 			newBox.addClass("coolBox");
-			newBox.css("background-color", boxes[i]);
+			$("div").css("background-color", "red");
 			$("#boxContainer").append(newBox);
 		}
 	}
@@ -77,7 +77,7 @@
 
 		$(document).on("click", ".coolBox",  function() {
 			//equivilent of $(this).attr("data-coolname")
-			alert("This Box is " + $(this).data("coolname"));
+			alert("This Box is " + $(this).attr("data-coolname"));
 		});
 
 		// Typical on Click Event Handling. Button Exists when Ready,
