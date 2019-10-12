@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		.coolBox{
+			color:white;
+			width:80px;
+			height:80px;
+			font-weight: bold;
+			cursor: pointer;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+<p>Simple $(this) Demo</p>
+
+<div id="div1" class="coolBox" style="background-color:red;">Red</div><br>
+<div id="div2" class="coolBox" style="background-color:green;">Green</div><br>
+<div id="div3" class="coolBox" style="background-color:blue;">Blue</div>
+<script>
+
+
+$( ".coolBox" ).click(function() {
+	alert($(this).html());
+});
+
+</script>
+</body>
+</html>

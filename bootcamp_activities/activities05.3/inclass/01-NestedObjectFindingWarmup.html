@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nested Object Warmup</title>
+
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<script>
+var garage = {
+  garageDoor: "Garage Closed",
+  tool: "Air Compressor",
+  carsInGarage: 
+    [ 
+      {
+        carMake: "Mazda",
+        carModels: "RX-7"
+      },
+      {
+        carMake: "Ford",
+        carModels: "Mustang"
+      },
+      {
+        carMake: "Honda",
+        carModels: "Pilot"
+      },
+    ],
+  snow: ["Snow Blower", "Shovel"],
+  other: {
+      bins: ["recycling", "garage", "yard waste"]
+  },
+  hitGarageOpener: function(){
+      if (this.garageDoor=="Garage Closed"){
+        this.garageDoor="Garage Open";
+      }
+      else{
+        this.garageDoor="Garage Closed";
+      }
+
+      return this.garageDoor;
+  }
+};
+
+document.write(garage.hitGarageOpener() + "<br>");
+document.write(garage.carsInGarage[1].carMake + "<br>");
+
+</script>
+
+</body>
+</html>
