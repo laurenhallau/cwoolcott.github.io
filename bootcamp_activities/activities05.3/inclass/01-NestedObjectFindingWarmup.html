@@ -10,8 +10,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+  <div id="garageDiv"></div>
+  <div id="garageDivAfter"></div>
 <script>
-var garage = {
+
+
+var garageGood = {
   garageDoor: "Garage Closed",
   tool: "Air Compressor",
   carsInGarage: 
@@ -41,12 +45,17 @@ var garage = {
         this.garageDoor="Garage Closed";
       }
 
-      return this.garageDoor;
+      var lightSwitch = function(){
+        if (garage.garageDoor == "Garage Closed"){
+          alert("Lights On!")
+        }
+      }
+      //return this.garageDoor;
   }
 };
 
-document.write(garage.hitGarageOpener() + "<br>");
-document.write(garage.carsInGarage[1].carMake + "<br>");
+$("#garageDiv").html(garageGood.carsInGarage[1].carMake);
+
 
 </script>
 

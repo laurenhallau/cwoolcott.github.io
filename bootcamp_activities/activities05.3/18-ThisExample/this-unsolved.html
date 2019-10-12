@@ -70,11 +70,13 @@
         var thisObject = this;
 
         this.name = "Star Powerup";
+
         var changeName = function(newName) {
           thisObject.name = newName;
         };
         changeName("Blue Shell");
         console.log(thisObject);
+        console.log(this.name);
       }
     };
     myObj.yell();

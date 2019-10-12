@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scope</title>
+
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<script>
+var name = "Bob"
+
+function formalName(){
+  
+  var name1 = "Mr. Bob"
+  name1 = name1 + " is Great.";
+  function petsName(){
+      var cat = "Mr. Pants";
+      console.log (name1 + " has a cat named " + cat)
+  }
+  
+
+  petsName();
+
+
+}
+
+formalName();
+
+
+</script>
+
+</body>
+</html>
