@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Cars Chris Likes</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"
+  />
+
+</head>
+<body>
+  <div class="container">
+    <h2>Cars Chris Likes</h2>
+    <p>Here is a short list of cars that Chris hopes to own some day.</p>
+    <table class="table" id="carTable">
+      <thead>
+        <tr>
+          <!-- The scope attribute specifies that this is a header for a column -->
+          <th>Year</th>
+          <th>Make</th>
+          <th>Model</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1995</td>
+          <td>Mazda</td>
+          <td>RX-7</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script type="text/javascript">
+
+    var moreCars = [
+        {
+            year: "2001",
+            make: "Ferrari",
+            model: "Modena"
+        },
+        {
+            year: "1971",
+            make: "Jaguar",
+            model: "XK-E"
+        }
+    ];
+
+    for (var i = 0; i < moreCars.length; i++){
+        var tRow = $("<tr>");
+        var year = $("<td>").text(moreCars[i].year);
+        var make = $("<td>").text(moreCars[i].make);
+        var model = $("<td>").text(moreCars[i].model);
+
+        tRow.append(year);
+        tRow.append(make);
+        tRow.append(model);
+        $("tbody").append(tRow);
+    }
+
+  </script>
+</body>
+</html>
