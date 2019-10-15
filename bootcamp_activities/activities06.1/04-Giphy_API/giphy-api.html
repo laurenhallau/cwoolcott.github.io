@@ -8,15 +8,24 @@
 
 <body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
   <script type="text/javascript">
     // Example queryURL for Giphy API
-    var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC";
+    var queryURL = "https://api.giphy.com/v1/gifs/translate?s=funny&weirdness=10&api_key=dc6zaTOxFJmzC";
 
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function(response) {
+      for (var i = 0; i<1; i++){
+
+     
       console.log(response);
+      var newGif = $("<img>");
+      newGif.attr("src",response.data.images.original.url);
+      $("body").append(newGif);
+      }
+
     });
   </script>
 
