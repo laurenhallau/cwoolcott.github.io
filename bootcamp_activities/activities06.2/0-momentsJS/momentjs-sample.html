@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Moment JS Exercises</title>
+
+</head>
+
+<body>
+
+  <!-- jQuery-->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+  <!-- Link to Moment.js should go here -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+  <!-- Script -->
+  <script>
+    
+    // Prints a specific day and time in this format. 02/12/2019 is MM/DD/YYYY; Your'e letting moment know that (02 is a month and not a day, so MM)
+    var convertedDate = moment("02/12/2019", "MM/DD/YYYY");
+    console.log(convertedDate.format("MM/DD/YY hh:mm A"));
+
+    // Prints the current day and time in this particular format. Moment already knows the format of moment(). 
+    var now = moment();
+    console.log(now.format("MM/DD/YY hh:mm A"));
+  </script>
+
+</body>
+
+</html>
