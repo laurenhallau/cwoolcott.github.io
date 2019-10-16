@@ -30,6 +30,9 @@
       <input id="add-movie" type="submit" value="Add a Movie, Yo!">
     </form>
 
+    <!-- Movies will Get Dumped Here -->
+    <div id="movies-view"></div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
       // Initial array of movies
@@ -38,7 +41,8 @@
       // Function for dumping the JSON content for each button into the div
       function displayMovieInfo() {
 
-        // YOUR CODE GOES HERE!!! HINT: You will need to create a new div to hold the JSON.
+        // YOUR CODE GOES HERE!!! 
+		AJAX CALL then POPULATE #movies-view with stringify response
 
       }
 
@@ -81,7 +85,8 @@
 
       });
 
-      // Generic function for displaying the movieInfo
+      // Function for displaying the movie info
+      // Using $(document).on instead of $(".movie").on to add event listeners to dynamically generated elements
       $(document).on("click", ".movie", displayMovieInfo);
 
       // Calling the renderButtons function to display the initial buttons
