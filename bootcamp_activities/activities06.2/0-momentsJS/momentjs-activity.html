@@ -15,7 +15,7 @@
   <script src="https://code.jquery.com/jquery.js"></script>
 
   <!-- Link to Moment.js CDN should go here -->
-
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
   <!-- Script -->
   <script>
@@ -28,14 +28,23 @@
     // Console.log to confirm the code changes you made worked.
 
     // 1 Convert the convertedDate into TWO other date formats
+    console.log(convertedDate.format("MM/DD/YY hh:mm"));
+    console.log(convertedDate.format("MM Do YY"))
 
     // 2 Determine the time in days between today and the convertedDate
+    var newDate = moment();
+    console.log(newDate.diff(convertedDate, "days"));
 
     // 3 Determine the number of days between the convertedDate and 02/14/2001
+    var numberThreeTime = moment("02/14/2001", "MM/DD/YYYY");
+    console.log(numberThreeTime.diff(convertedDate, "days"));
 
     // 4 Convert the convertedDate to unix time (be sure to look up what unix time even is!!!)
+    console.log(convertedDate.format("X"))
+
 
     // 5 Determine what day of the week is convertedDate.
+    console.log(convertedDate.format("dddd"))
     
   </script>
 

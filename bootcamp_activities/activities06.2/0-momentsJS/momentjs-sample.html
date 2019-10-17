@@ -22,7 +22,9 @@
     
     // Prints a specific day and time in this format. 02/12/2019 is MM/DD/YYYY; Your'e letting moment know that (02 is a month and not a day, so MM)
     var convertedDate = moment("02/12/2019", "MM/DD/YYYY");
-    console.log(convertedDate.format("MM/DD/YY hh:mm A"));
+    //console.log(convertedDate.format("MM/DD/YY hh:mm A"));
+
+    console.log(convertedDate.add(3, 'days').calendar()); 
 
     // Prints the current day and time in this particular format. Moment already knows the format of moment(). 
     var now = moment();
