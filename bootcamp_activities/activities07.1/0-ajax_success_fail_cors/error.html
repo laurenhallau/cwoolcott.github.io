@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+SUCCESS/FAIL/CORS
+
+Extra Reading...
+https://stackoverflow.com/questions/15005500/loading-cross-domain-endpoint-with-jquery-ajax
+-->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <title>Success/Fail CORS Sample</title>
+  <style>
+    #song {
+      float:right;
+      font-size:25px;
+      width:400px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="title"></h1>
+  <img id="poster">
+  <div id="song"></div>
+  <script>
+
+  /* Simple Ajax OMDB done vs fail */
+
+  var movieTitle = "Yesterday";
+  
+  var getMovieUrl = "https://www.omdbapi.com/?t=" + movieTitle + "&y=&plot=short&apikey=trilogy"
+
+  $.ajax(getMovieUrl)
+    .done(function(response) {
+      $("#title").html(response.Title);
+      $("#poster").attr("src",response.Poster);
+    })
+    .fail(function(){
+      $("#title").html("Can't Find");
+      $("#poster").attr("src","broken.png");
+  });
+
+  /* More complicated Ajax musixmatch with Proxy, timeout, data */
+
+  var lyric = "plowing over mailboxes";
+
+  var lyricsSearch = encodeURI(lyric);
+  var proxy = "https://chriscastle.com/proxy/index.php?:proxy:";
+
+  var getLyricUrl =  "https://api.musixmatch.com/ws/1.1/track.search";
+  var apiKey = "28e8336b7ccf4b5261bf290e9cfc6874";
+
+  $.ajax({
+    type: "GET",
+    url: proxy + getLyricUrl,
+    dataType: 'json',
+    data: "q_lyrics=" + lyricsSearch + "&apikey=" + apiKey,
+    timeout: 2000,
+      success: function(response, textStatus) {
+          if (response.message.body.track_list[0]){
+            var firstTrack = response.message.body.track_list[0].track;
+            var trackName = firstTrack.track_name;
+            var artist = firstTrack.artist_name;
+            var album = firstTrack.album_name;
+       
+            $("#song").html(trackName + " by " + artist + ", off the '" + album + "' album?");
+          }
+          else{
+            $("#song").html("Could not find song with <br/>'" + decodeURI(lyricsSearch) + "'");
+          }
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        $("#song").html("Issue Reaching Server");
+      }
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</body>
+</html>
