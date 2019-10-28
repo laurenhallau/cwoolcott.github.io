@@ -33,7 +33,7 @@ https://stackoverflow.com/questions/15005500/loading-cross-domain-endpoint-with-
   var getMovieUrl = "https://www.omdbapi.com/?t=" + movieTitle + "&y=&plot=short&apikey=trilogy"
 
   $.ajax(getMovieUrl)
-    .done(function(response) {
+    .then(function(response) {
       $("#title").html(response.Title);
       $("#poster").attr("src",response.Poster);
     })
@@ -58,7 +58,7 @@ https://stackoverflow.com/questions/15005500/loading-cross-domain-endpoint-with-
     dataType: 'json',
     data: "q_lyrics=" + lyricsSearch + "&apikey=" + apiKey,
     timeout: 2000,
-      success: function(response, textStatus) {
+      success: function(response) {
           if (response.message.body.track_list[0]){
             var firstTrack = response.message.body.track_list[0].track;
             var trackName = firstTrack.track_name;

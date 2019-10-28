@@ -74,6 +74,34 @@
 
 // Create a basic html button then create an onClick event that triggers an on click event.
 
+function createContainer(){
+	var buttonContainer = $("<div">);
+	buttonContainer.attr("id",  "buttonContainer");
+	buttonContainer.css("color",  "blue").css("background-color",  "white").css("color",  "blue");
+	buttonContainer.attr("class",  "containerForButtonClass");
+
+
+	$("body").append(buttonContainer);
+
+}
+
+function createNewButton(){
+
+
+	var button = $("<button>");
+
+	$(document).on("click", button, function(){
+		alert("HI!");
+	})
+
+
+	$("#buttonContainer").append(button);
+
+
+
+}
+
+
 
 
 
