@@ -32,13 +32,13 @@
         // Initial array of movies
         var movies = [];
 
-        if (localStorage.getItem("movies")) {
-          movies = JSON.parse(localStorage.getItem("movies"));
+        if (localStorage.getItem("storedMovies")) {
+          movies = JSON.parse(localStorage.getItem("storedMovies"));
         }
 
         renderButtons();
 
-        function getMovie(title) {
+        function getMovie() {
           var queryURL =
             "https://www.omdbapi.com/?t=" +
             title +
@@ -48,7 +48,7 @@
             url: queryURL,
             method: "GET"
           }).then(function(response) {
-            $("#movieTitle").html(response.Title);
+            $("#movieTitle").text(response.Title);
             $("#moviePoster").attr("src", response.Poster);
           });
         }
@@ -69,7 +69,8 @@
             movieButton.text(movies[i]);
 
             // add event
-            $(movieButton).on("click", function(event) {
+            //$(movieButton).on("click", function(event) {
+            $(document).on("click", ".movieClass", function(event) {
               var title = $(this).attr("data-name");
               getMovie(title);
             });
@@ -79,10 +80,8 @@
         }
 
         // This function handles events where one button is clicked
-        $("#add-movie").on("click", function(event) {
-          // event.preventDefault() prevents the form from trying to submit itself.
-          // We're using a form so that the user can hit enter instead of clicking the button if they want
-          event.preventDefault();
+        $("#add-movie").on("click", function(e) {
+          e.preventDefault();
 
           // This line will grab the text from the input box
           var movie = $("#movie-input")
@@ -92,7 +91,7 @@
 
           if (movies.indexOf(movie) === -1) {
             movies.push(movie);
-            localStorage.setItem("movies", JSON.stringify(movies));
+            localStorage.setItem("storedMovies", JSON.stringify(movies));
           }
           // calling renderButtons which handles the processing of our movie array
           renderButtons();
