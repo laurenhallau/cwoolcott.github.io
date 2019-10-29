@@ -38,7 +38,7 @@
 
         renderButtons();
 
-        function getMovie() {
+        function getMovie(title) {
           var queryURL =
             "https://www.omdbapi.com/?t=" +
             title +
@@ -69,8 +69,8 @@
             movieButton.text(movies[i]);
 
             // add event
-            //$(movieButton).on("click", function(event) {
-            $(document).on("click", ".movieClass", function(event) {
+
+            $(movieButton).on("click", function(event) {
               var title = $(this).attr("data-name");
               getMovie(title);
             });
