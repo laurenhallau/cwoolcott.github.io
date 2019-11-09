@@ -9,7 +9,7 @@ function who() {
 function what() {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve('lurks');
+      resolve(' is super');
     }, 1300);
   });
 }
@@ -17,7 +17,7 @@ function what() {
 function where() {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve('in the shadows');
+      resolve(' creepy.');
     }, 500);
   });
 }
