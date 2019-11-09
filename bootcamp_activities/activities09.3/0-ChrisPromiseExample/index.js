@@ -1,7 +1,7 @@
 function who() {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve('🤡');
+      resolve("🤡");
     }, 1000);
   });
 }
@@ -9,7 +9,7 @@ function who() {
 function what() {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve(' is super');
+      resolve(" is super");
     }, 1300);
   });
 }
@@ -17,7 +17,7 @@ function what() {
 function where() {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve(' creepy.');
+      resolve(" creepy.");
     }, 500);
   });
 }
@@ -30,7 +30,7 @@ async function msg() {
   const c = await where();
   console.log(c);
 
-  console.log(`${ a } ${ b } ${ c }`);
+  console.log(`${a} ${b} ${c}`);
 }
 
 msg();
