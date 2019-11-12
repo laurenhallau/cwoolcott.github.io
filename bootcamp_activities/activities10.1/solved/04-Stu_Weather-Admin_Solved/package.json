@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "how-many-pizza": "^1.1.2",
+    "moment": "^2.20.1",
     "weather-js": "^2.0.0"
   }
 }

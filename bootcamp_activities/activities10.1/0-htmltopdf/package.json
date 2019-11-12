@@ -1,15 +1,15 @@
 {
-  "name": "weatheradmin",
+  "name": "mini-project",
   "version": "1.0.0",
   "description": "",
-  "main": "WeatherAdmin.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "how-many-pizza": "^1.1.2",
-    "weather-js": "^2.0.0"
+    "html-pdf": "^2.2.0",
+    "inquirer": "^6.3.1"
   }
 }
