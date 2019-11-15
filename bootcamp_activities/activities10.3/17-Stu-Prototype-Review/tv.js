@@ -1,10 +1,12 @@
 const axios = require("axios");
 const fs = require("fs");
 
-// Create the TV constructor
+// Create the TV constructor (Hint: Leave Alone)
 const TV = function() {};
 
-// Find a tv show actor
+// Find a tv show actor (Create TV findActor Prototype. ie: like findShow but with actor)
+
+// axios.get, console.log actor data
 
 // Find a tv show
 TV.prototype.findShow = function(show) {
@@ -12,7 +14,7 @@ TV.prototype.findShow = function(show) {
 
   axios.get(URL).then(function(response) {
     const showData = [
-      "Show: " + response.data.person.name,
+      "Show: " + response.data.name,
       "Genre(s): " + response.data.genres.join(", "),
       "Rating: " + response.data.rating.average,
       "Network: " + response.data.network.name,
