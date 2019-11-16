@@ -15,7 +15,7 @@ Algo.prototype.capitalize = function(str) {
   return str
     .split(" ")
     .map(word => {
-      return word.substring(0, 1).toUpperCase() + word.substring(1);
+      return word.substring(0, 1).toUpperCase() + word.substring();
     })
     .join(" ");
 };

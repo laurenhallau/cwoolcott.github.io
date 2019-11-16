@@ -33,6 +33,8 @@ Movie.prototype.logInfo = function() {
     console.log(`${this.title} was released in ${this.releaseYear}`);
 };
 
+
+
 const theShining = new Movie("The Shining", 1980)
 theShining.logInfo();
 
