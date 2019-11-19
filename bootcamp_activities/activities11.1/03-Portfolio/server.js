@@ -12,27 +12,26 @@ server.listen(PORT, function() {
 
 // Create a function which handles incoming requests and sends responses
 function handleRequest(req, res) {
-
   // Capture the url the request is made to
   var path = req.url;
 
   // Depending on the URL, display a different HTML file.
   switch (path) {
+    case "/":
+      return displayRoot(res);
 
-  case "/":
-    return displayRoot(res);
+    case "/portfolio":
+      return displayPortfolio(res);
 
-  case "/portfolio":
-    return displayPortfolio(res);
-
-  default:
-    return display404(path, res);
+    default:
+      return display404(path, res);
   }
 }
 
 // When someone visits the "http://localhost:8080/" path, this function is run.
 function displayRoot(res) {
-  var myHTML = "<html>" +
+  var myHTML =
+    "<html>" +
     "<body><h1>Home Page</h1>" +
     "<a href='/portfolio'>Portfolio</a>" +
     "</body></html>";
@@ -46,7 +45,8 @@ function displayRoot(res) {
 
 // When someone visits the "http://localhost:8080/portfolio" path, this function is run.
 function displayPortfolio(res) {
-  var myHTML = "<html>" +
+  var myHTML =
+    "<html>" +
     "<body><h1>My Portfolio</h1>" +
     "<a href='/'>Go Home</a>" +
     "</body></html>";
@@ -60,9 +60,12 @@ function displayPortfolio(res) {
 
 // When someone visits any path that is not specifically defined, this function is run.
 function display404(url, res) {
-  var myHTML = "<html>" +
+  var myHTML =
+    "<html>" +
     "<body><h1>404 Not Found </h1>" +
-    "<p>The page you were looking for: " + url + " can not be found</p>" +
+    "<p>The page you were looking for: " +
+    url +
+    " can not be found</p>" +
     "</body></html>";
 
   // Configure the response to return a status code of 404 (meaning the page/resource asked for couldn't be found), and to be an HTML document
