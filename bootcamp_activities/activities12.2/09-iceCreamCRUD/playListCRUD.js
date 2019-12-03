@@ -11,29 +11,29 @@ var connection = mysql.createConnection({
 
   // Your password
   password: "",
-  database: "ice_creamDB"
+  database: "playlist_db"
 });
 
 connection.connect(function(err) {
   if (err) throw err;
   console.log("connected as id " + connection.threadId + "\n");
-  createProduct();
+  createSong();
 });
 
-function createProduct() {
-  console.log("Inserting a new product...\n");
+function createSong() {
+  console.log("Inserting a new song...\n");
   var query = connection.query(
-    "INSERT INTO products SET ?",
+    "INSERT INTO song SET ?",
     {
-      flavor: "Rocky Road",
-      price: 3.0,
-      quantity: 50
+      title: "Fifths",
+      artist: "DeadMau5",
+      genre: "House"
     },
     function(err, res) {
       if (err) throw err;
-      console.log(res.affectedRows + " product inserted!\n");
+      console.log(res.affectedRows + " song inserted!\n");
       // Call updateProduct AFTER the INSERT completes
-      updateProduct();
+      updateSong();
     }
   );
 
@@ -41,23 +41,23 @@ function createProduct() {
   console.log(query.sql);
 }
 
-function updateProduct() {
-  console.log("Updating all Rocky Road quantities...\n");
+function updateSong() {
+  console.log("Updating all Hip-Hop...\n");
   var query = connection.query(
-    "UPDATE products SET ? WHERE ?",
+    "UPDATE song SET ? WHERE ?",
     [
       {
-        quantity: 100
+        genre: "Old School"
       },
       {
-        flavor: "Rocky Road"
+        genre: "Hip-hop"
       }
     ],
     function(err, res) {
       if (err) throw err;
       console.log(res.affectedRows + " products updated!\n");
       // Call deleteProduct AFTER the UPDATE completes
-      deleteProduct();
+      deleteSong();
     }
   );
 
@@ -65,28 +65,28 @@ function updateProduct() {
   console.log(query.sql);
 }
 
-function deleteProduct() {
-  console.log("Deleting all strawberry icecream...\n");
+function deleteSong() {
+  console.log("Deleting all House...\n");
   connection.query(
-    "DELETE FROM products WHERE ?",
+    "DELETE FROM songs WHERE ?",
     {
-      flavor: "strawberry"
+      genre: "House"
     },
     function(err, res) {
       if (err) throw err;
-      console.log(res.affectedRows + " products deleted!\n");
+      console.log(res.affectedRows + " song deleted!\n");
       // Call readProducts AFTER the DELETE completes
-      readProducts();
+      readSongs();
     }
   );
 }
 
-function readProducts() {
-  console.log("Selecting all products...\n");
+function readSongs() {
+  console.log("Selecting all songs...\n");
   connection.query(
-    "SELECT * FROM products WHERE ?",
+    "SELECT * FROM songs WHERE ?",
     {
-      flavor: "chocolate"
+      genre: "Old School"
     },
     function(err, res) {
       if (err) throw err;

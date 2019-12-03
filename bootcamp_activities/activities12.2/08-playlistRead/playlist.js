@@ -11,21 +11,30 @@ var connection = mysql.createConnection({
 
   // Your password
   password: "",
-  database: "ice_creamDB"
+  database: "playlist_db"
 });
 
 connection.connect(function(err) {
   if (err) throw err;
   console.log("connected as id " + connection.threadId);
   afterConnection();
+  showSongs();
 });
 
 function afterConnection() {
-  let sql =
-    "SELECT * FROM products WHERE (flavor = 'vanilla' OR flavor = 'chocolate') ORDER BY flavor ASC";
+  let sql = "SELECT * FROM songs WHERE genre = 'Hip-Hop'";
   connection.query(sql, function(err, res) {
     if (err) throw err;
     console.log(res);
-    connection.end();
+    //  connection.end();
+  });
+}
+
+function showSongs() {
+  let sql = "SELECT * FROM songs";
+  connection.query(sql, function(err, res) {
+    if (err) throw err;
+    console.log(res);
+    //  connection.end();
   });
 }
