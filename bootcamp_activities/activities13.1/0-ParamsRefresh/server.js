@@ -4,31 +4,33 @@ var PORT = process.env.PORT || 8080;
 
 var app = express();
 
+var html;
+
 //Root
 app.get("/", function(req, res) {
-  res.send("Navigate to a page and Paragraph");
+  html = "<h1>Navigate to the page and paragraph</h1>";
+  res.send(html);
 });
 
 //With Optional Params
 app.get("/:page?/:paragraph?", function(req, res) {
   let pageNumber = parseInt(req.params.page);
   let paragraphNumber = parseInt(req.params.paragraph);
-  let result;
 
   if (pageNumber && paragraphNumber) {
-    result =
+    html =
       "You are on page <b>" +
       pageNumber +
       "</b> and paragraph <b>" +
       paragraphNumber +
       "</b>";
   } else if (pageNumber) {
-    result = "You are on page <b>" + pageNumber + "</b>";
+    html = "You are on page <b>" + pageNumber + "</b>";
   } else {
-    result = "Can't Find that page";
+    html = "Can't Find that page";
   }
 
-  res.send(result.toString());
+  res.send(html);
 });
 
 app.listen(PORT, function() {

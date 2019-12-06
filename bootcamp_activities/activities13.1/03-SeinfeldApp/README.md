@@ -2,7 +2,7 @@
 
   * Create a Node Application with Express and MySQL with three Express routes.
 
-    * Create a `/cast` route that will display all the actors and their data ordered by their id's.
+    * [COMPLETE] Create a `/cast` route that will display all the actors and their data ordered by their id's.
 
     * Create a `/coolness-chart` route that will display all the actors and their data ordered by their coolness points.
 
