@@ -29,10 +29,10 @@ connection.connect(function(err) {
 
 // Routes
 app.get("/", function(req, res) {
-
   // If the main route is hit, then we initiate a SQL query to grab all records.
   // All of the resulting records are stored in the variable "result."
-  connection.query("SELECT * FROM schools", function(err, result) {
+  sql = "SELECT id, name FROM schools";
+  connection.query(sql, function(err, result) {
     if (err) throw err;
     // We then begin building out HTML elements for the page.
     var html = "<h1> Magical Schools </h1>";
@@ -40,7 +40,7 @@ app.get("/", function(req, res) {
     // Here we begin an unordered list.
     html += "<ul>";
 
-    // We then use the retrieved records from the database to populate our HTML file.
+    // We then use the retr ieved records from the database to populate our HTML file.
     for (var i = 0; i < result.length; i++) {
       html += "<li><p> ID: " + result[i].id + "</p>";
       html += "<p>School: " + result[i].name + " </p></li>";
@@ -54,6 +54,19 @@ app.get("/", function(req, res) {
   });
 });
 
+app.get("/:schoolid?", function(req, res) {
+  let schoolid = parseInt(req.params.schoolid);
+
+  // All of the resulting records are stored in the variable "result."
+  sql = "select name from schools where id = " + schoolid;
+  connection.query(sql, function(err, result) {
+    if (err) throw err;
+
+    var html = `<h1> Magical School: ${result[0].name}  </h1>`;
+
+    res.send(html);
+  });
+});
 // Start our server so that it can begin listening to client requests.
 app.listen(PORT, function() {
   // Log (server-side) when our server has started
