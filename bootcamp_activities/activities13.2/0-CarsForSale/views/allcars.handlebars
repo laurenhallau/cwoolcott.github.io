@@ -1,0 +1,8 @@
+{{#each carsForSale}}
+<div class="car" >
+	<img src="/images/{{image}}" style="width:100px;"><br>
+	<h2><b>{{year}} {{make}} {{model}}</b></h2>
+	<h3>Price: ${{price}}</h3>
+	<a href="/carsforsale/{{model}}"><button>More Information</button></a>
+ </div>
+{{/each}}
