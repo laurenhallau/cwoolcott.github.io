@@ -10,7 +10,7 @@ var app = express();
 var PORT = process.env.PORT || 8080;
 
 // Static Directory for css/js/images
-app.use(express.static('public'))
+app.use(express.static("public"));
 
 // Set Handlebars as the default templating engine.
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -18,10 +18,34 @@ app.set("view engine", "handlebars");
 
 // Data
 var carsForSale = [
-  { year: "1993", make: "Mazda", model:"Rx-7",  price: 30000, image: "mazda.jpg"},
-  { year: "2001", make: "Ferrari", model:"Modena",  price: 120000, image: "ferrari.jpg"},
-  { year: "2015", make: "Bugatti", model:"Veyron",  price: 1700000, image: "bugatti.jpg"},
-  { year: "2019", make: "Bentley", model:"Mulsanne",  price: 305000, image: "mulsanne.jpg"},
+  {
+    year: "1993",
+    make: "Mazda",
+    model: "Rx-7",
+    price: 30000,
+    image: "mazda.jpg"
+  },
+  {
+    year: "2001",
+    make: "Ferrari",
+    model: "Modena",
+    price: 120000,
+    image: "ferrari.jpg"
+  },
+  {
+    year: "2015",
+    make: "Bugatti",
+    model: "Veyron",
+    price: 1700000,
+    image: "bugatti.jpg"
+  },
+  {
+    year: "2019",
+    make: "Bentley",
+    model: "Mulsanne",
+    price: 305000,
+    image: "mulsanne.jpg"
+  }
 ];
 
 // Routes
@@ -33,7 +57,7 @@ app.get("/carsforsale/:model", function(req, res) {
   }
 });
 
-app.get(["/","/carsforsale"], function(req, res) {
+app.get(["/", "/carsforsale"], function(req, res) {
   res.render("allcars", { carsForSale: carsForSale });
 });
 

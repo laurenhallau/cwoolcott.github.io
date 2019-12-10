@@ -5,7 +5,7 @@
   <li>
     <p>
       {{this.id}}. {{this.plan}}
-
+      <br>
       <button data-planid="{{this.id}}" class="delplan">Delete Plan!</button>
     </p>
   </li>
@@ -14,23 +14,23 @@
 
 <h2>Create a Plan</h2>
 <form id="createplan" class="button-size">
-  <textarea type="text" name="plan"></textarea>
+  <textarea name="plan" id="plan"></textarea><br>
   <button type="submit">Save Plan!</button>
 </form>
 
 <h2>Update a Plan</h2>
 <form id="updateplan" class="button-size">
   <select name="id">
-		{{#each plans}}
-			<option value="{{this.id}}">{{this.plan}}</option>
-		{{/each}}
-	</select>
-  <textarea type="text" name="plan" placeholder="plan"></textarea>
+    {{#each plans}}
+    <option value="{{this.id}}">{{this.plan}}</option>
+    {{/each}}
+  </select>
+  <textarea type="text" name="plan" placeholder="plan"></textarea><br>
   <button type="submit">Update Plan!</button>
 </form>
 
 <script type="text/javascript">
-  $(".delplan").on("click", function(event) {
+  $(".delplan").on("click", function (event) {
     // Get the ID from the button.
     // This is shorthand for $(this).attr("data-planid")
     var id = $(this).data("planid");
@@ -39,7 +39,7 @@
     $.ajax("/api/plans/" + id, {
       type: "DELETE"
     }).then(
-      function() {
+      function () {
         console.log("deleted id ", id);
         // Reload the page to get the updated list
         location.reload();
@@ -47,13 +47,13 @@
     );
   });
 
-  $("#createplan").on("submit", function(event) {
+  $("#createplan").on("submit", function (event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
 
     // [name=plan] will find an element with a "name" attribute equal to the string "plan"
     var newPlan = {
-      plan: $("#createplan [name=plan]").val().trim()
+      plan: $("#plan").val().trim()
     };
 
     // Send the POST request.
@@ -61,7 +61,7 @@
       type: "POST",
       data: newPlan
     }).then(
-      function() {
+      function () {
         console.log("created new plan");
         // Reload the page to get the updated list
         location.reload();
@@ -69,7 +69,7 @@
     );
   });
 
-  $("#updateplan").on("submit", function(event) {
+  $("#updateplan").on("submit", function (event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
 
@@ -85,7 +85,7 @@
       type: "PUT",
       data: updatedPlan
     }).then(
-      function() {
+      function () {
         console.log("updated id ", id);
         // Reload the page to get the updated list
         location.reload();
