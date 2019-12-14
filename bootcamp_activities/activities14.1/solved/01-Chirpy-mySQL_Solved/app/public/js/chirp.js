@@ -1,7 +1,7 @@
 /* global moment */
 
 // When the page loads, grab and display all of our chirps
-$.get("/api/all", function (data) {
+$.get("/api/all", function(data) {
 
   if (data.length !== 0) {
 
@@ -23,7 +23,7 @@ $.get("/api/all", function (data) {
 });
 
 // When user chirps (clicks addBtn)
-$("#chirp-submit").on("click", function (event) {
+$("#chirp-submit").on("click", function(event) {
   event.preventDefault();
 
   // Make a newChirp object
@@ -38,7 +38,7 @@ $("#chirp-submit").on("click", function (event) {
   // Send an AJAX POST-request with jQuery
   $.post("/api/new", newChirp)
     // On success, run the following code
-    .then(function () {
+    .then(function() {
 
       var row = $("<div>");
       row.addClass("chirp");
