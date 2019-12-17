@@ -1,6 +1,7 @@
 
 
-//var db = require("../models");
+var db = require("../models/");
+
 //In db, there is a Oscars model so it is called db.Oscars IE: db.Oscars.findAll({})
 
 /*
@@ -41,6 +42,11 @@ module.exports = function (app) {
   app.get("/api/oscars/:id", function (req, res) {
 
     //SEQUELIZE GOES HERE / RETURN RESULTS
+    db.Oscars.findOne({
+      where: { id: req.params.id }
+    }).then(function (result) {
+      res.json(result);
+    });
 
   });
 
@@ -48,6 +54,12 @@ module.exports = function (app) {
   app.get("/api/lots_o_oscars", function (req, res) {
 
     //SEQUELIZE GOES HERE / RETURN RESULTS
+    db.Oscars.findAll({
+      where: { total: { $gte: 10 } },
+      order: [["total", "DESC"]]
+    }).then(function (result) {
+      res.json(result);
+    });
 
   });
 
@@ -61,7 +73,9 @@ module.exports = function (app) {
       total: req.body.ba + req.body.bsa,
       films: req.body.films
     }
-
+    db.Oscars.create(newActor).then(function (results) {
+      res.json(results)
+    })
     //SEQUELIZE GOES HERE / RETURN RESULTS
 
 
@@ -79,7 +93,7 @@ module.exports = function (app) {
   // PUT route for updating todos. We can get the updated todo data from req.body
   app.put("/api/oscars", function (req, res) {
 
-    let total = parseInt(req.body.ba) +  parseInt(req.body.bsa);
+    let total = parseInt(req.body.ba) + parseInt(req.body.bsa);
     let updateActor = {
       id: req.body.id,
       actor: req.body.actor,
