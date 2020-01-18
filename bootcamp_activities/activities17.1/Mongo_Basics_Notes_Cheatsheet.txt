@@ -1,3 +1,6 @@
+https://docs.mongodb.com/manual/reference/mongo-shell/
+
+
 -- Start Service
 mongod;
 
@@ -13,8 +16,14 @@ cntl+c
 -- create / use database
 use lessondb 
 
--- show all databases
+-- show current database
 db 
+
+-- show all databases
+show dbs
+
+-- show all collections
+show collections
 
 -- Insert Documents into Collection
 db.places.insert({"continent": "Africa", "country":"Morocco", "majorcities": ["Casablanca", "Fez", "Marrakech"]})
