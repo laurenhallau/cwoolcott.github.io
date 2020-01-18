@@ -30,32 +30,111 @@ db.on("error", error => {
 // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
 
 // Post a book to the mongoose database
-app.post("/submit", ({ body }, res) => {
+app.post("/submit", function ({ body }, res) {
   // Save the request body as an object called book
   const book = body;
+  book.read = false;
+
+  db.books.insert(book, (error, saved) => {
+    if (error) {
+      console.log(error)
+    }
+    else {
+      res.send(saved);
+    }
+  })
 
   // If we want the object to have a boolean value of false,
   // we have to do it here, because the ajax post will convert it
   // to a string instead of a boolean
-  book.read = false;
+
 });
 
 // Find all books marked as read
-app.get("/read", (req, res) => {});
+app.get("/read", (req, res) => {
+
+  db.books.find({ read: true }, (error, found) => {
+    if (error) {
+      console.log(error)
+    }
+    else {
+      res.json(found);
+    }
+
+  })
+
+});
+
 
 // Find all books marked as unread
-app.get("/unread", (req, res) => {});
+app.get("/unread", (req, res) => {
+
+  db.books.find(
+    { read: false }
+    ,
+    function (error, found) {
+      if (error) {
+        console.log(error)
+      }
+      else {
+        res.json(found);
+      }
+
+    })
+
+});
+
 
 // Mark a book as having been read
-app.put("/markread/:id", (req, res) => {
+app.put("/markread/:id", ({ params }, res) => {
+
   // Remember: when searching by an id, the id needs to be passed in
   // as (mongojs.ObjectId(IdYouWantToFind))
+  db.books.update(
+    {
+      _id: mongojs.ObjectId(params.id)
+    },
+    {
+      $set: {
+        read: true
+      }
+    },
+    function (error, edited) {
+
+      if (error) {
+        console.log(error)
+      }
+      else {
+        res.send(edited);
+      }
+    }
+  )
+
 });
 
 // Mark a book as having been not read
-app.put("/markunread/:id", (req, res) => {
+app.put("/markunread/:id", ({ params }, res) => {
   // Remember: when searching by an id, the id needs to be passed in
   // as (mongojs.ObjectId(IdYouWantToFind))
+  db.books.update(
+    {
+      _id: mongojs.ObjectId(params.id)
+    },
+    {
+      $set: {
+        read: false
+      }
+    },
+    (error, edited) => {
+
+      if (error) {
+        console.log(error)
+      }
+      else {
+        res.send(edited);
+      }
+    }
+  )
 });
 
 // Listen on port 3000

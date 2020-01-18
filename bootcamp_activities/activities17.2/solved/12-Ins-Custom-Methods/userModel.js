@@ -3,10 +3,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  // CODE HERE
   username: {
     type: String,
-    unique: true,
     trim: true,
     required: "Username is Required"
   },
@@ -27,10 +25,23 @@ const UserSchema = new Schema({
   userCreated: {
     type: Date,
     default: Date.now
+  },
+
+  isCool: {
+    type: Boolean,
+    default: false
   }
-
-
 });
+
+UserSchema.methods.coolifier = function() {
+  this.username = `${this.username}...the Coolest!`;
+  return this.username;
+};
+
+UserSchema.methods.makeCool = function() {
+  this.isCool = true;
+  return this.isCool;
+};
 
 const User = mongoose.model("User", UserSchema);
 
