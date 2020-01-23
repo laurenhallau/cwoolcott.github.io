@@ -1,0 +1,85 @@
+https://docs.mongodb.com/manual/reference/mongo-shell/
+
+
+-- Start Service
+mongod;
+
+-- Start CLI in New Terminal Window
+mongo;
+
+-- Quite CLI
+quit() || cntl+c
+
+-- Close Service
+cntl+c
+
+-- create / use database
+use lessondb 
+
+-- show current database
+db 
+
+-- show all databases
+show dbs
+
+-- show all collections
+show collections
+
+-- Insert Documents into Collection
+db.places.insert({"continent": "Africa", "country":"Morocco", "majorcities": ["Casablanca", "Fez", "Marrakech"]})
+
+db.places.insert({"continent": "North America", "country":"US", "majorcities": ["New York Cities", "Los Angeles", "Minneapolis"]})
+
+db.places.insert({"continent": "Europe", "country":"France", "majorcities": ["Paris", "Bordeaux", "Marseille"]})
+
+-- Find all documents
+db.places.find()
+
+-- Find all documents pretty print
+db.places.find().pretty()
+
+-- Find Specific Documents
+db.places.find({"continent": "North America"})
+db.places.find({"country": "France"})
+db.places.find({_id: ObjectId("5b873c641a65252edc56a7be")})
+
+-- Delete Database
+db.dropDatabase()
+
+-- Find Document with value in nested array
+db.students.find({"hobbies": {$in: ["Sleeping"]}})
+
+Update first
+db.places.update({"country": "Morocco"}, {$set: {"continent": "Antarctica"}})
+
+Update all
+db.places.update({"country": "Morocco"}, {$set: {"continent": "Antarctica"}}, {multi: true})
+
+--Update field value
+db.places.update({"country": "Morocco"}, {$set: {"capital": "Rabat"}})
+
+--Insert field value to array
+db.places.update({"country": "Morocco"}, {$push: {"majorcities": "Agadir"}})
+
+-- Remove Documents
+db.places.remove({"country": "Morocco"})
+
+-- Drop Collection
+db.places.drop()
+
+-- Drop DB
+db.dropDatabase()
+
+-- Add new Value to Arrray
+db.students.update({"name":"Chris"}, {$push:{"hobbies":"coding"}})
+
+In Class
+
+db.students.update({name: "Chris"}, {$push: {"hobbies":"Extreme Basketweaving"}})
+
+db.students.update({"name": "Mr Pants"}, {$set: {"os":"DOS"}})
+db.students.remove({"name": "Morty"})
+
+db.students.update({}, {$set: {gavecandy:false}}, {multi:true})
+db.students.update({name:'Mr Pants'}, {$set: {gavecandy:true}})
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Local Storage</title>
+  </head>
+  <body>
+    <h1>Stored Items</h1>
+    <ul>
+      <li>Current LocalStorage: <span id="localDisplay"></span></li>
+      <li>Current SessionStorage: <span id="sessionDisplay"></span></li>
+    </ul>
+    <form id="localStore">
+      <label>Local Storage</label>
+      <input type="text" id="local">
+      <br><br>
+      <label>Session Storage</label>
+      <input type="text" id="session">
+      <br><br>
+      <input type="submit" value="Save">
+    </form>
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+    <script>
+      $("#localStore").submit(function(){
+          localStorage.setItem('local', $("#local").val());
+          sessionStorage.setItem('session', $("#session").val());
+      });
+
+      $(document).ready(function() {
+          $("#localDisplay").html(localStorage.getItem('local'));
+          $("#sessionDisplay").html(sessionStorage.getItem('session'));
+      });
+    </script>
+  </body>
+</html>
+

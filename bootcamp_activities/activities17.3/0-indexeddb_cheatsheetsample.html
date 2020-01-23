@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Creating An Object Store</title>
+</head>
+
+<body>
+  <h1>Open Your Developer Tools > Application > IndexedDB</h1>
+  <script>
+
+    // Delete for this example purpose.. this is also an async call 
+    window.indexedDB.deleteDatabase("carDatabase");
+
+    // Requesting  a database instance (Name, Version of Instance).
+    const request = window.indexedDB.open("carDatabase", 1);
+
+    //Triggered after an error with the connection. Optional, but you should have it.
+    request.onerror = e => {
+      console.log("Error: " + e.target.errorCode);
+    };
+
+    // Creates an "objectStore" in the Database Instance. Basically a table within the Database. I'm defining a "keypath" its a unique, sort of a primary key I call "carID" and I force it to autoincrement.  "target" is the only property we care about from the "on change object", so it's destructured (ie: target = event.target). onupgradeneeded will only trigger/run if there are no changes. 
+
+    //Immediately after an "objectStore" is defined but inside the onupgradeneeded, like above... We can create an Index that we will use to get information or query on. It's a "column" that might be used to pull a record. We can have as many indexes as needed. This example has the name and keypath of "carmake", and is not unique, but we can force it to be. 
+
+    request.onupgradeneeded = ({ target }) => {
+      const db = target.result;
+      const objectStore = db.createObjectStore("carListing", { keyPath: "carID", autoIncrement: true });
+      objectStore.createIndex("carmake", "carmake", { unique: false });
+    };
+
+    //Once the database has been created and established we can start to use it, the browser will trigger onsuccess. 
+    request.onsuccess = event => {
+
+      //Within the onsuccess block: First, for simplicity, we setup the db as the result of the connection and it's configuration. Next, we setup the transaction. In this case, we are only going to be dealing with the "carListing" objectStore (we can use all), we expect an array of results, and it has read/write permissions. Also, for simplicity, we set a variable as carListingStore to handle the future transactions. 
+
+      const db = request.result;
+      const transaction = db.transaction(["carListing"], "readwrite");
+      const carListingStore = transaction.objectStore("carListing");
+
+      carListingStore.clear();
+
+      //Within the onsuccess block: We are now able to ".add" items to the objectStore. We can also use ".put" to update when paired with a result (or "insert", if record doesn't exist)
+
+      carListingStore.put({ carmake: "Mazda", carmodel: "Rx-7" });
+      carListingStore.put({ carmake: "Ford", carmodel: "Mustang" });
+      carListingStore.put({ carmake: "Toyota", carmodel: "Tundra" });
+      carListingStore.put({ carmake: "Honda", carmodel: "P1lot" });
+
+      // Within the onsuccess block: We can query an item by using the keypath (or as we can think of it as a primary id) by using "get".
+
+      const getRequest = carListingStore.get(1);
+      getRequest.onsuccess = () => {
+        console.log(getRequest.result);
+      };
+      getRequest.onerror = e => {
+        console.log("Error: ", e.target);
+      };
+
+      // Within the onsuccess block: We can query an item by using any "Index" we have specified by using "getAll".
+
+      const carmakeIndex = carListingStore.index("carmake");
+      const getRequestByMake = carmakeIndex.getAll("Honda");
+      getRequestByMake.onsuccess = () => {
+        console.log(getRequestByMake.result);
+      };
+      getRequestByMake.onerror = e => {
+        console.log("Error: ", e.target);
+      };
+
+      //Within the onsuccess block: We can open a Cursor request returning all of the documents/records.
+
+      const getCursorRequest = carListingStore.openCursor();
+      getCursorRequest.onsuccess = e => {
+        const cursor = e.target.result;
+        if (cursor) {
+          console.log(cursor.value);
+          cursor.continue();
+        } else {
+          console.log("No documents left!");
+        }
+      };
+
+      //Within the onsuccess block: We UPDATE a record based on a get on id #4 
+      const getRequestByIdToUpdate = carListingStore.get(4);
+
+      getRequestByIdToUpdate.onsuccess = () => {
+        var data = getRequestByIdToUpdate.result;
+        data.carmodel = "Pilot";
+        var updateModelRequest = carListingStore.put(data);
+
+        updateModelRequest.onsuccess = function () {
+          console.log(getRequestByIdToUpdate);
+        };
+      };
+
+
+    };
+  </script>
+</body>
+
+</html>
