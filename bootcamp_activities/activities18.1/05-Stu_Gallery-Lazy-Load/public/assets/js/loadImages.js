@@ -9,7 +9,17 @@ function createEl(htmlString = "", className) {
 }
 
 function initLazyImages() {
-  // Enter your code here
+  const lazyImages = document.querySelectorAll(".lazy-image");
+
+  function onIntersection(imageEntities) {
+    imageEntities.forEach(image => {
+      image.target.src = image.target.dataset.src;
+    });
+  }
+
+  const observer = new IntersectionObserver(onIntersection);
+
+  lazyImages.forEach(image => observer.observe(image));
 }
 
 function loadImages() {
@@ -20,12 +30,12 @@ function loadImages() {
 }
 
 function createCards(data) {
-  const container = document.getElementsByClassName("container")[0];
+  const container = document.querySelector(".container");
   container.innerHTML = "";
   let lastRow;
   const row = createEl("div", "row");
 
-  return data.forEach(function(image, index) {
+  return data.forEach(function (image, index) {
     const col = createEl("div", "col-md-4 mt-4");
     col.appendChild(createCard(image));
     if (index % 3 === 0) {
@@ -41,8 +51,8 @@ function createCards(data) {
 function createCard(image) {
   const card = createEl("div", "card");
   const imageContainer = createEl("div", "card__image-container");
-  const img = createEl("img", "card-img-top card__image--cover");
-  img.setAttribute("src", image.image);
+  const img = createEl("img", "card-img-top card__image--cover lazy-image");
+  img.setAttribute("data-src", image.image);
   img.setAttribute("alt", image.description);
 
   const cardBody = createEl("div", "card-body");
@@ -110,7 +120,7 @@ function updateRating(event) {
     headers: {
       "Content-Type": "application/json"
     }
-  }).then(function() {
+  }).then(function () {
     loadImages();
   });
 }
