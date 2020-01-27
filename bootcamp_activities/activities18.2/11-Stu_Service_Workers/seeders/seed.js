@@ -199,7 +199,7 @@ var imageSeed = [
     date: new Date(Date.now())
   },
   {
-    description: "Hampster",
+    description: "Hamster",
     image: "/assets/images/33.jpg",
     rating: 0,
     date: new Date(Date.now())
