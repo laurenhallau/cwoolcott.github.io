@@ -131,20 +131,38 @@ The **fetch** listener intercepts all fetch requests and uses data from the cach
 	
 	Here we modify the service worker to handle requests to /api and store the responses in our cache, so we can easily access them later. (This includes every route with api) If the network request fails, we try to get the response from our cache.
 	
-	`self.addEventListener('fetch', function(evt) {
-	if (evt.request.url.includes('/api/')) {
-	console.log('[Service Worker] Fetch (data)', evt.request.url);
-	evt.respondWith(
-	  caches.open(DATA_CACHE_NAME).then(cache => {
-	    return fetch(evt.request)
-	      .then(response => {
-	        // If the response was good, clone it and store it in the cache.
-	        if (response.status === 200) {
-	          cache.put(evt.request.url, response.clone());
-	        }
-	        return response;
-	      })
-	.catch(err => {
-	return cache.match(evt.request);
-	});
+	`
+self.addEventListener("fetch", function (evt) {
+  if (evt.request.url.includes("/api/")) {
+    evt.respondWith(
+      caches.open(DATA_CACHE_NAME).then(cache => {
+        return fetch(evt.request)
+          .then(response => {
+            // If the response was good, clone it and store it in the cache.
+            if (response.status === 200) {
+              cache.put(evt.request.url, response.clone());
+            }
+
+            return response;
+          })
+          .catch(err => {
+            // Network request failed, try to get it from the cache.
+            return cache.match(evt.request);
+
+          });
+      }).catch(err => {
+        console.log(err)
+      })
+    );
+    return;
+  }
+  evt.respondWith(
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.match(evt.request).then(response => {
+        return response || fetch(evt.request);
+      });
+    })
+  );
+});
+
 `	
