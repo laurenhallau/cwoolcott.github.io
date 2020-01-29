@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var db = require("../models");
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://heroku_bjt6g1q4:93gkpkv3gdv7tjmaarmpl4f7k2@ds157946.mlab.com:57946/heroku_bjt6g1q4",
+  process.env.MONGODB_URI || "mongodb://localhost/webpackplugin",
   { useNewUrlParser: true }
 );
 
