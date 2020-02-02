@@ -1,0 +1,27 @@
+.card {
+  background: #fff;
+  border-radius: 2px;
+  height: 325px;
+  margin: 1rem;
+  position: relative;
+  width: 325px;
+  box-shadow: 0 3px 6px #999, 0 3px 6px #999;
+  text-align: left;
+}
+
+.burger{
+  background-image: url("https://www.seriouseats.com/recipes/images/2015/07/20150702-sous-vide-hamburger-anova-primary-1500x1125.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100%;
+}
+
+
+.fries{
+  background-image: url("https://cms.splendidtable.org/sites/default/files/styles/w2000/public/french-fries.jpg?itok=FS-YwUYH");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100%;
+}
+
+
