@@ -2,7 +2,7 @@
 
 firstOrLastName = "last";
 someObj = {
-	[firstOrLastName + '1']:"Johnson"
+	[firstOrLastName]:"Johnson"
 }
 
 console.log(someObj);
