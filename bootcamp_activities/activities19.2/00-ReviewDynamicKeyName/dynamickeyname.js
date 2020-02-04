@@ -1,8 +1,10 @@
 //Dynamic Object Key
 
-firstOrLastName = "last";
+firstOrLastName = "first";
+//firstOrLastName = "last";
 someObj = {
-	[firstOrLastName]:"Johnson"
+	[firstOrLastName]: "Johnson"
+
 }
 
 console.log(someObj);

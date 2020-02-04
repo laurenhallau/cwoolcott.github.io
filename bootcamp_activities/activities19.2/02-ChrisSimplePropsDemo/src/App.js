@@ -7,6 +7,7 @@ function App() {
     <div>
       <Title>Menu</Title>
       <Food type="Cheeseburger" styleClass="burger" quality="amazing">Big Cheeseburger</Food>
+      <Food type="Fries" styleClass="fries" quality="pretty good">Big Cheeseburger</Food>
 
     </div>
   );
