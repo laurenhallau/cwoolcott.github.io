@@ -1,6 +1,6 @@
 import React from "react";
-import PortfolioContainer from "./components/PortfolioContainer";
+import WaterContainer from "./components/WaterContainer";
 
-const App = () => <PortfolioContainer />;
+const App = () => <WaterContainer />;
 
 export default App;
