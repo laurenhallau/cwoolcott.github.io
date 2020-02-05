@@ -4,9 +4,17 @@ In this activity we will add some new functionality to the previous form example
 
 ## Instructions
 
-* Replace your React application's `src` folder with [Unsolved/src](Unsolved/src). Stop the dev server if it is already running. Start the app in dev mode by running `npm start`.
+* Replace your React application's `src` folder with [/src](Unsolved/src). Stop the dev server if it is already running. Start the app in dev mode by running `npm start`.
 
 * Update the `Form` component to add the following:
+
+* ACTIVITY
+	1. Using this.state; Make a if/else statement to do the following
+	2. If first or last name is empty. Alert the user that fields are required
+ 	3. Else if both have values alert the user to say "Hi firstName and lastName" 
+
+
+* BONUS
 
   1. A new input field that updates `this.state.password`. 
   
