@@ -10,7 +10,7 @@ class Form extends Component {
 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
-    const value = event.target.value;
+    let value = event.target.value;
     const name = event.target.name;
 
     // Updating the input's state
@@ -23,8 +23,13 @@ class Form extends Component {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
 
-    // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-    alert(`Hello ${this.state.firstName} ${this.state.lastName}`);
+    // Using this.state; Make a if/else statement to do the following
+    // If first or last name is empty alert the user that they are empty
+    // Else if both have values alert the user to say "Hi firstName and lastName" 
+    
+    
+  
+
     this.setState({
       firstName: "",
       lastName: ""
