@@ -2,6 +2,9 @@ import React from "react";
 
 function Cars(props) {
   //Condition if statement and Map function to loop through array
+
+  const night = true;
+
   return (
     <div>
       {props.carList.length ? (
