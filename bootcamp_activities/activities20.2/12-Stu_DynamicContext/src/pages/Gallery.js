@@ -4,8 +4,8 @@ import CardContainer from "../components/CardContainer";
 import Row from "../components/Row";
 
 function Gallery() {
-  const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
+  const [user, setUser] = useState({});
   const [userIndex, setUserIndex] = useState(0);
 
   // When the component mounts, a call will be made to get random users.
@@ -13,13 +13,24 @@ function Gallery() {
     loadUsers();
   }, []);
 
+  function loadUsers() {
+    API.getLanguagesList()
+      .then(languages => {
+        API.getUsersByLanguage(languages[0]).then(users => {
+          setUsers(users);
+          setUser(users[0]);
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
   function nextUser(userIndex) {
     // Ensure that the user index stays within our range of users
     if (userIndex >= users.length) {
       userIndex = 0;
     }
-    setUser(users[userIndex]);
     setUserIndex(userIndex);
+    setUser(users[userIndex]);
   }
 
   function previousUser(userIndex) {
@@ -27,8 +38,8 @@ function Gallery() {
     if (userIndex < 0) {
       userIndex = users.length - 1;
     }
-    setUser(users[userIndex]);
     setUserIndex(userIndex);
+    setUser(users[userIndex]);
   }
 
   function handleBtnClick(event) {
@@ -41,17 +52,6 @@ function Gallery() {
       const newUserIndex = userIndex - 1;
       previousUser(newUserIndex);
     }
-  }
-
-  function loadUsers() {
-    API.getLanguagesList()
-      .then(languages => {
-        API.getUsersByLanguage(languages[0]).then(users => {
-          setUsers(users);
-          setUser(users[0]);
-        });
-      })
-      .catch(err => console.log(err));
   }
 
   return (

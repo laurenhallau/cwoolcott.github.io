@@ -33,3 +33,20 @@ In this activity we will continue to practice using the Context API in React. Th
 ### Hints
 
 * The Context object that you will create will need to be the same for both the Provider and the Consumer. How can you ensure that it's the same object without using state?
+
+### CHRIS' HINTS
+
+* Create a userContext.js Context in the utils/ folder it should include:
+	* login: "", language: "", image: "", handleBtnClick: () => {} 	
+* Open  Gallery/  import UserContext from "../utils/userContext";
+* Wrap everything in the return with UserContext.Provider
+* in JSX, Remove Props from Card Container
+* Open CardContainer/ remove imported arguments in function and remove props in Card
+* Open Card/ remove imported arguments in function and remove props in Cards 
+* Open and Remove Props from CardHeading, CardTitle
+* CardBody, CardImage and CardBtn will need to import useContext, as well as import UserContext from "../../utils/userContext". 
+	* Within the CardBody, CardTitleText, CardImage Function: const { user } = useContext(UserContext); 
+	* Within the CardImage Function: const { user } = useContext(UserContext); 
+	* Within The CardBtn Function: const { handleBtnClick } = useContext(UserContext);
+* Use the new declared const within each function replacing props
+
