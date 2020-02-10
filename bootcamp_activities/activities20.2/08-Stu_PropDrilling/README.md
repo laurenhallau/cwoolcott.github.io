@@ -53,6 +53,20 @@ In this activity we will review passing props down the component tree in React.
 
   * Each arrow click should _not_ make an additional API call.
 
+### Chris' Hints
+
+* Start with /pages/Gallery send props to CardContainer (check comments)
+* /components/CardContainer/ should take in the all the props as arguments in the function (remember destructuring objects)
+* /components/CardContainer/ will pass all same props as Gallery to Card
+* /components/Card/  should take in the all the props as arguments in the function 
+* /components/Card/ will pass all the props to the respective components:
+	* CardHeading will get the title (which will pass to CardTitle and on to CardTitleText)
+	* CardImage will get the image
+	* CardBody will get language
+	* CardBtn will need to have an onClick event that gets handleBtnClick
+* All of the compoents above will need to handle the passed in props
+  
+
 ### Hints
 
 * Remember, `useState` is a great way to store information that your application may later need.

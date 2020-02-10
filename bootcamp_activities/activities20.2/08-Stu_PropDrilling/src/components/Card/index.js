@@ -11,8 +11,8 @@ function Card({ image }) {
       <CardHeading />
       <CardImg />
       <CardBody />
-      <CardBtn style={{ opacity: image ? 1 : 0 }} />
-      <CardBtn style={{ opacity: image ? 1 : 0 }} />
+      <CardBtn style={{ opacity: image ? 1 : 0 }} data-value="back" />
+      <CardBtn style={{ opacity: image ? 1 : 0 }}  data-value="next" />
     </div>
   );
 }
