@@ -39,7 +39,7 @@ function App() {
                 <Row>
                   <Col size="xs-9 sm-10">
                     <Input
-                      name="recipeSearch"
+                      name="RecipeSearch"
                       value={recipeSearch}
                       onChange={handleInputChange}
                       placeholder="Search For a Recipe"
@@ -61,7 +61,18 @@ function App() {
         </Row>
         <Row>
           <Col size="xs-12">
+
+
+
+
+
+
             <h1>Render Recipes Here</h1>
+
+
+
+
+
           </Col>
         </Row>
       </Container>

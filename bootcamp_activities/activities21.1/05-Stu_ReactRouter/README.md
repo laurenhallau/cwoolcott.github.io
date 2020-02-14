@@ -32,7 +32,7 @@ In this activity we will add React Router to the Books application in order to r
 
 * Add a route for the the new `Detail` component. This should render when the `/books/:id` path is matched. e.g. if a book's `_id` is `59a39cf2549cf482c814333f`, then `/books/59a39cf2549cf482c814333f` should render its book `Detail` page.
 
-* Inside of the `Detail` component, add code so that when the component mounts, we retrieve the book for the rendered route and save it to `book`. e.g. when the route is `/books/59a39cf2549cf482c814333f`, an AJAX request should be made to get the book with an `_id` of `59a39cf2549cf482c814333f`. If completed successfully, you should see the book's synopsis on this page.
+* (DONE) Inside of the `Detail` component, add code so that when the component mounts, we retrieve the book for the rendered route and save it to `book`. e.g. when the route is `/books/59a39cf2549cf482c814333f`, an AJAX request should be made to get the book with an `_id` of `59a39cf2549cf482c814333f`. If completed successfully, you should see the book's synopsis on this page.
 
   * You may need to look into [URL params with React Router](https://reacttraining.com/react-router/web/example/url-params) to accomplish this.
 
@@ -45,3 +45,13 @@ In this activity we will add React Router to the Books application in order to r
 * The React Router documentation is your friend!
 
 * Ask the instructor or a TA if you're having difficulty understanding any of the activity requirements.
+
+### Chris' Hints
+* `client/src/App.js` everything in the return should be wrapped in the `Router` and closing `/Router`
+* `client/src/App.js` will have to include a `Switch` and closing `/Switch` Component right under the Nav 
+* Four Routes should be created inside the `Switch` :
+	* exact path of "/" with component={Books}
+	* exact path of "/books" with component={Books}
+	* exact path="/books/:id" with component={Detail} 
+	* Fall back that loads component={NoMatch}
+

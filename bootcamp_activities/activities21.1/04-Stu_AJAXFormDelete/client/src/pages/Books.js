@@ -25,6 +25,21 @@ function Books() {
       .catch(err => console.log(err));
   };
 
+  // Deletes a book from the database with a given id, then reloads books from the db
+
+
+
+  // Handles updating component state when the user types into the input field
+
+
+
+
+  // When the form is submitted, use the API.saveBook method to save the book data
+  // Then reload books from the database
+
+
+
+
     return (
       <Container fluid>
         <Row>

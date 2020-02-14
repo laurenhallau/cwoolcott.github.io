@@ -29,3 +29,10 @@ In this activity we will add functionality to a full stack React application for
 * Use the API helper module (`client/src/utils/API.js`) to perform an AJAX request which should return _all_ of the books in the database.
 
 * The only file you will need to modify is `client/src/pages/Books.js`.
+
+## Chris' Hints
+* You need to create a db in Mongo called `reactreadinglist` 
+* use `npm run seed` to populate the db
+* The Only file that needs updating is `client/src/pages/Books.js` 
+* Each Input should have an onChange that uses the {handleInputChange}
+* Form Button shoud have an onClick that use the {handleFormSubmit}

@@ -63,3 +63,10 @@ In this activity we will render a list of recipes retrieved via an AJAX request.
 * Add code so that if a recipe doesn't come with a thumbnail url, use a placeholder image instead. Check out [placehold.it](https://placeholder.com/) for placeholder images.
 
 * Add code so that if `recipes` is an empty array, render a message indicating that no recipes are available.
+
+### Chris' Hints
+* All we are going to do is get recipes retrieved via an AJAX request :)
+* First,  we'll need to update the `RecipeList` (RecipeList/index.js) to use props thumbnailtitle,ingredients, and href. Replace the hard coded values (ie: Vegetable-Pasta Oven Omelet is {title} or {props.title} depending how you are handling the props)
+* In /client/src/App.js we need to list all the of the items coming from recipes populating the recipes where it says "Render Recipes Here." This shoud use RecipeList Component as a continer. 
+* Within the RecipeList Component, you will need to use recipes.map to go through each of the results and return each RecipeListItem with props. 
+* Check out "activities19.3/solved/19-Ins_AJAX/src/components/ResultList.js" for hints

@@ -27,3 +27,13 @@ In this activity we will add functionality to the previous books example for sub
 * The only file you need to modify is `Books.js`.
 
 * See [React's Documentation on Handling Events](https://facebook.github.io/react/docs/handling-events.html)
+
+### Chris' Hints
+
+* You'll need to create 3 functions in `Books.js`
+* function handleInputChange(event) should setFormObject with everything in the formObject and with the new values.  Check the last activity for hints 03-Stu_AJAXBooks
+* function handleFormSubmit(event) should event.preventDefault(); and use the  API.saveBook method to update the saveBook Method. Check the last activity for hints 03-Stu_AJAXBooks
+*  function deleteBook(id) should call the API.deleteBook(id) method then loadBooks()
+
+
+
