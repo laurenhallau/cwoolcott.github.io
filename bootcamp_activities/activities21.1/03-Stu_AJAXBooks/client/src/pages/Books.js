@@ -12,6 +12,13 @@ function Books() {
   const [books, setBooks] = useState([])
   const [formObject, setFormObject] = useState({})
 
+
+
+
+
+
+
+
   // Load all books and store them with setBooks
   useEffect(() => {
     loadBooks()
@@ -28,7 +35,8 @@ function Books() {
 
   // Deletes a book from the database with a given id, then reloads books from the db
   function deleteBook(id) {
-
+    API.deleteBook(id)
+      .then(() => loadBooks())
   }
 
   // Handles updating component state when the user types into the input field
@@ -36,6 +44,13 @@ function Books() {
     const { name, value } = event.target;
     setFormObject({ ...formObject, [name]: value })
   };
+
+  formObject = {
+    title: "The Raven",
+    author: "Poe",
+    synopsis: "It's Great!"
+
+  }
 
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
@@ -52,46 +67,49 @@ function Books() {
     }
   };
 
-    return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>What Books Should I Read?</h1>
-            </Jumbotron>
-            <form>
-              <Input name="title" placeholder="Title (required)" />
-              <Input name="author" placeholder="Author (required)" />
-              <TextArea name="synopsis" placeholder="Synopsis (Optional)" />
-              <FormBtn>Submit Book</FormBtn>
-            </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Books On My List</h1>
-            </Jumbotron>
-            {books.length ? (
-              <List>
-                {books.map(book => {
-                  return (
-                    <ListItem key={book._id}>
+  return (
+    <Container fluid>
+      <Row>
+        <Col size="md-6">
+          <Jumbotron>
+            <h1>What Books Should I Read?</h1>
+          </Jumbotron>
+          <form>
+            <Input name="title" onChange={handleInputChange} placeholder="Title (required)" />
+            <Input name="author" onChange={handleInputChange} placeholder="Author (required)" />
+            <TextArea name="synopsis" onChange={handleInputChange} placeholder="Synopsis (Optional)" />
+            <FormBtn
+              disabled={!(formObject.title && formObject.author)}
+              onClick={handleFormSubmit}
+            >Submit Book</FormBtn>
+          </form>
+        </Col>
+        <Col size="md-6 sm-12">
+          <Jumbotron>
+            <h1>Books On My List</h1>
+          </Jumbotron>
+          {books.length ? (
+            <List>
+              {books.map(book => {
+                return (
+                  <ListItem key={book._id}>
 
-                        <strong>
-                          {book.title} by {book.author}
-                        </strong>
-  
-                      <DeleteBtn onClick={() => deleteBook(book._id)} />
-                    </ListItem>
-                  );
-                })}
-              </List>
-            ) : (
+                    <strong>
+                      {book.title} by {book.author}
+                    </strong>
+
+                    <DeleteBtn onClick={() => deleteBook(book._id)} />
+                  </ListItem>
+                );
+              })}
+            </List>
+          ) : (
               <h3>No Results to Display</h3>
             )}
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
+        </Col>
+      </Row>
+    </Container>
+  );
+}
 
 export default Books;

@@ -22,8 +22,15 @@ function App() {
   const handleFormSubmit = event => {
     // When the form is submitted, prevent its default behavior, get recipes update the recipes state
     event.preventDefault();
+
+
+
     API.getRecipes(recipeSearch)
-      .then(res => setRecipes(res.data))
+      .then(res => {
+        console.log(res.data)
+        setRecipes(res.data)
+      })
+
       .catch(err => console.log(err));
   };
 
@@ -51,7 +58,7 @@ function App() {
                       type="success"
                       className="input-lg"
                     >
-                        Search
+                      Search
                     </Button>
                   </Col>
                 </Row>
@@ -61,24 +68,28 @@ function App() {
         </Row>
         <Row>
           <Col size="xs-12">
-
-
-
-
-
-
-            <h1>Render Recipes Here</h1>
-
-
-
-
-
+            {!recipes.length ? (
+              <h1 className="text-center">No Recipes to Display</h1>
+            ) : (
+                <RecipeList>
+                  {recipes.map(recipe => {
+                    return (
+                      <RecipeListItem
+                        key={recipe.title}
+                        title={recipe.title}
+                        href={recipe.href}
+                        ingredients={recipe.ingredients}
+                        thumbnail={recipe.thumbnail}
+                      />
+                    );
+                  })}
+                </RecipeList>
+              )}
           </Col>
         </Row>
       </Container>
     </div>
   );
 }
-
 
 export default App;

@@ -8,14 +8,20 @@ import Nav from "./components/Nav";
 function App() {
   return (
 
- 
+
     <div>
-      <Nav />
- // Remove and replace with Router and Switch with different Route(s)
-      <Books />
-      
-      
-      
+
+      <Router>
+        <div>
+          <Nav />
+          <Switch>
+            <Route exact path="/" component={Books} />
+            <Route exact path="/books" component={Books} />
+            <Route exact path="/books/:id" component={Detail} />
+            <Route component={NoMatch} />
+          </Switch>
+        </div>
+      </Router>
     </div>
   );
 }
