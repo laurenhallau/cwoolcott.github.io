@@ -1,4 +1,6 @@
-# Shopping List MERN App
+# <img src="https://chriscastle.com/temp/shoppinglist_ss.png" alt="image-20200218151949220" style="zoom:50%;" />
+
+# Shopping List MERN  App
 
 ## Initial Setup ME*N 
 
