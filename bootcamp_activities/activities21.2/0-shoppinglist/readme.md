@@ -3,14 +3,22 @@
 ## Initial Setup ME*N 
 
 1. Create new folder `shoppinglist` (cd into it)
-2. Initalize your package.json (leave defaults)
-3. Install Packages: **Express** `npm i express`, **dot-env** `npm i dotenv`, **mongoose** `npm i mongoose`, **morgan** `npm i morgan`, **body parser** `npm i body-parser`
-4. Create an index.js file add basic information
-	* require express and .env (enviroment variables, db etc)
-	* init express and setup port 
-	* Allow API to be accessed from everywhere (CORS issues)
-	* Send test message
-	* Setup Express Listener
+2. Initalize your package.json by `npm init` (leave defaults)
+3. Install Packages: 
+   **Express** `npm i express` 
+   **dotenv** `npm i dotenv`
+   **mongoose** `npm i mongoose`
+   **morgan** `npm i morgan`
+   **body parser** `npm i body-parser`
+4. Install Dev Packages: 
+   npm i concurrently --save-dev
+   npm i nodemon --save-dev
+5. Create an index.js file add basic information
+  * require express and .env (enviroment variables, db etc)
+  * init express and setup port 
+  * Allow API to be accessed from everywhere (CORS issues)
+  * Send test message
+  * Setup Express Listener
 
 ```javascript
 const express = require('express');
@@ -36,7 +44,7 @@ app.listen(port, () => { console.log('Server running on port ' + port) });
 
 
 
-Test by running  `node index` in terminal
+Test by running  `node index` in terminal (Should just read running on port 3001)
 
 ## Mongoose/Mongo Model
 
@@ -64,7 +72,7 @@ module.exports = ShoppingList;
 
 
 ## Create Express Routes to handle Model
-1. Create routes Folder
+1. Create routes Folder off of the root of the shoppinglist app
 
 2. Create api.js in the routes folder
 
@@ -77,12 +85,12 @@ module.exports = ShoppingList;
    
 
 ```javascript
+
 const express = require('express');
 const router = express.Router();
 const ShoppingList = require('../models/shoppinglist');
 
 router.get('/shoppinglist', (req, res, next) => {
-    console.log(next)
 		ShoppingList
 		.find({}, 'item')
 		.then(data => res.json(data))
@@ -156,50 +164,54 @@ app.listen(port, () => { console.log('Server running on port ' + port) });
 
 
 
-## Setup Remote Mongo Database on mlab
+## Setup Remote Mongo Database on mlab / Create .env file
 
-1. Create mlab sandbox Provision db through Heroku by setting up an app, going to resources and typing in mlab. Add Collection called `shoppingcart` and user if neccessary.
-2. Add user and get connection string. IE: `mongodb://someuser:somepass@ds227865.mlab.com:27865/heroku_lwwghkmr`
-3. Create a `.env` file on your root of the application. Add your db connection to it. `MONGODB_URI = mongodb://someuser:somepass@ds227865.mlab.com:27865/heroku_lwwghkmr`
-	This will be used my the mongoose connection string. 
-4. You can also setup a local db instance and replace the .env location with your own db	
-	
-	
+1. Create mlab sandbox provision db through Heroku by setting up an app, going to resources and typing in mlab. Add collection called `shoppingcart` and user if neccessary.
+
+2. Add user and get connection string. IE: mongodb://chrisuser:guestpass123@ds227865.mlab.com:27865/heroku_lwwghkmr
+
+3. Create a `.env` file on your root of the application. Add your db connection to it.
+
+  * `DB = 'mongodb://chrisuser:guestpass123@ds227865.mlab.com:27865/heroku_lwwghkmr'`
+    //This will be used my the mongoose connection string. 
+
+4. You can also setup a local db instance and replace the .env DB location with your own db	
+
+   
 ### Test Your Endpoints Using Postman
-1. Get by using GET http://localhost:3001/api/shoppinglist
-2. Post by using POST http://localhost:3001/api/shoppinglist with json {"item":"cheese"}
-3. Delete by using DELETE localhost:3001/api/shoppinglist/5e4ae903c544711c71125245 or whatever any of the unique items are
+1. node index.js
+2. Get by using GET http://localhost:3001/api/shoppinglist
+3. Post by using POST http://localhost:3001/api/shoppinglist with json {"item":"cheese"}
+4. Delete by using DELETE localhost:3001/api/shoppinglist/5e4ae903c544711c71125245 or whatever any of the unique items are
 
 ## Front End React
-In the same root directory as your backend code. 
+In the  root directory. 
 
 1. Run `create-react-app client` This will setup the basic scaffolding for react.
-2. Add two new dev dependences from the root folder. Concurrently to run scripts, after one other and nodemon to auto restart the server on change. 
-	
-	* npm i concurrently --save-dev
-	* npm install nodemon --save-dev
+2. *note*: dependences from the root folder. Concurrently to run scripts, after one other and nodemon to auto restart the server on change. 
 
-3. Within the root package.json file add the following between scripts: 
+3. Within the root **package.json** file add the following between scripts: 
 
-```text
+```json
 "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-
-"start:prod": "node server.js",
-
- "start:dev": "concurrently "nodemon --ignore 'client/*'" "npm run client"",
-
- "client": "cd client && npm run start",
-
- "install": "cd client && npm install",
-
- "build": "cd client && npm run build",
-
- "heroku-postbuild": "npm run build"
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
 ```
 
-In the client folder, You will need to add a proxy, so you we don't need to specify full urls. Edit the client package.json file add the following line  under the "private":true.....  `"proxy": "http://localhost:3001",`
+**In the new client folder**
 
-5. From the client folder, in terminal, install Axios `npm install axios`
+Once create-react-app completes.  You will need to add a proxy, so you we don't need to specify full urls. 
+
+1. Edit the /client version  **package.json** file add the following line anywhere on the root node.. (under "private" is fine)  
+
+   `"proxy": "http://localhost:3001",`
+
+#### From the **/client** folder, in terminal, install **Axios** `npm i axios`
 
 
 ## React Components
@@ -209,7 +221,8 @@ In the client folder, You will need to add a proxy, so you we don't need to spec
 #### Create `Input.js` Functional Component in components
 
 ```react
-import React, { useState, useEffect } from 'react';
+
+import React, { useState } from 'react';
 import axios from 'axios';
 
 function Input(props) {
@@ -254,6 +267,7 @@ export default Input
 
 ​    
 ```react
+
 import React from 'react';
 
 const ListItems = ({ items, deleteItem }) => {
@@ -355,14 +369,107 @@ const App = () => {
 export default App;
 ```
 
-
 ​	
-​    	
-​	
-####Style to your liking. App.css and index.css	
 
-###To run use:
-NPM start
+Run the App:
+
+> ## npm start
+
+
+
+Style to your liking....
+
+### src/App.css (Optional Edits)
+
+```
+.App {
+  text-align: center;
+  font-size: calc(10px + 2vmin);
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input {
+  height: 40px;
+  width: 50%;
+  border: none;
+  border-bottom: 2px #101113 solid;
+  background: none;
+  font-size: 1.5rem;
+  color: #787a80;
+}
+
+input:focus {
+  outline: none;
+}
+
+button {
+  width: 25%;
+  height: 45px;
+  border: none;
+  margin-left: 10px;
+  font-size: 25px;
+  background: #101113;
+  border-radius: 5px;
+  color: #e7e7e7;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+ul {
+  list-style: none;
+  text-align: left;
+  padding: 15px;
+  background: #9dc2ff;
+  border-radius: 5px;
+}
+
+li {
+  padding: 15px;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  background: #bcd1f9;
+  border-radius: 5px;
+  overflow-wrap: break-word;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 300px) {
+  .App {
+    width: 80%;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 15px;
+    margin-left: 0;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  .App {
+    width: 60%;
+  }
+
+  input {
+    width: 50%;
+  }
+
+  button {
+    width: 30%;
+    margin-left: 10px;
+    margin-top: 0;
+  }
+}
+```
 
 
 
