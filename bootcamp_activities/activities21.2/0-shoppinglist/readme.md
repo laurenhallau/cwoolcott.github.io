@@ -124,8 +124,7 @@ module.exports = router;
 
 ## Update index.js to handle routes and connections
 1. We will need need to libraries, body parse for our post, mongoose for our database, routes and path
-2. Connect to database (we will setup in the .env we haven't yet created)
-3. Mongoose promise method is depreciated, so we can use Node's version (give us our "then")
+2. Connect to database (we will setup the DB environment variable in the .env we will create next)
 
    
 
@@ -147,8 +146,6 @@ mongoose.connect(process.env.DB,
 	.then(() => console.log('Database connected successfully'))
 	.catch(err => console.log(err)
 );
-
-mongoose.Promise = global.Promise;
 
 app.use(logger('dev'));
 
@@ -300,7 +297,7 @@ export default ListItems
 
 
 
-	
+
 #### Create `Item.js` Functional Component in components
 
 ```react
