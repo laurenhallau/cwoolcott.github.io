@@ -1,0 +1,34 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Streams",
+            "request": "launch",
+            "mainClass": "com.streams.Streams"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Varargs",
+            "request": "launch",
+            "mainClass": "com.varargs.Varargs"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Test",
+            "request": "launch",
+            "mainClass": "Test"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Test",
+            "request": "launch",
+            "mainClass": "com.exceptions.Test"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Throw",
+            "request": "launch",
+            "mainClass": "com.exceptions.Throw"
+        }
+    ]
+}
