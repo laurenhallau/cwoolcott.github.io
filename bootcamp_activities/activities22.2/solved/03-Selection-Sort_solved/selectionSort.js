@@ -11,6 +11,12 @@ var arraySize = 40;
 
 // // Case 2 - Large set of Numbers
 // var arraySize = 400000;
+function swap(items, firstIndex, secondIndex) {
+  var temp = items[firstIndex];
+  items[firstIndex] = items[secondIndex];
+  items[secondIndex] = temp;
+}
+
 
 var array = [];
 for (var index = 0; index < arraySize; index++) {
@@ -23,17 +29,32 @@ for (var index = 0; index < arraySize; index++) {
 // SOLUTION - Selection Sort
 // ================================================
 
-function swap(items, firstIndex, secondIndex) {
-  var temp = items[firstIndex];
-  items[firstIndex] = items[secondIndex];
-  items[secondIndex] = temp;
-}
+
 
 function selectionSort(items) {
 
-  // FILL IN YOUR CODE HERE
-  // Use the above swap function when you are ready to start swapping elements in the array.
+  var len = items.length;
+  var min;
 
+  for (var i = 0; i < len; i++) {
+
+    // set index of minimum to this position
+    min = i;
+
+    // check the rest of the array to see if anything is smaller
+    for (var j = i + 1; j < len; j++) {
+      if (items[j] < items[min]) {
+        min = j;
+      }
+    }
+
+    // if the current position isn't the minimum, swap it and the minimum
+    if (i !== min) {
+      swap(items, i, min);
+    }
+  }
+
+  return items;
 }
 
 // ================================================
