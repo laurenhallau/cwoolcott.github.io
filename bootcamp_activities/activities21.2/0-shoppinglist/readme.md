@@ -1,132 +1,130 @@
 # <img src="https://chriscastle.com/temp/shoppinglist_ss.png" alt="image-20200218151949220" style="zoom:50%;" />
 
-# Shopping List MERN  App
+# Shopping List MERN App
 
-## Initial Setup ME*N 
+## Initial Setup ME\*N
 
 1. Create new folder `shoppinglist` (cd into it)
 2. Initalize your package.json by `npm init` (leave defaults)
-3. Install Packages: 
-   **Express** `npm i express` 
+3. Install Packages:
+   **Express** `npm i express`
    **dotenv** `npm i dotenv`
    **mongoose** `npm i mongoose`
    **morgan** `npm i morgan`
    **body parser** `npm i body-parser`
-4. Install Dev Packages: 
+   **path** `npm i path`
+4. Install Dev Packages:
    npm i concurrently --save-dev
    npm i nodemon --save-dev
 5. Create an index.js file add basic information
-  * require express and .env (enviroment variables, db etc)
-  * init express and setup port 
-  * Allow API to be accessed from everywhere (CORS issues)
-  * Send test message
-  * Setup Express Listener
+
+- require express and .env (enviroment variables, db etc)
+- init express and setup port
+- Allow API to be accessed from everywhere (CORS issues)
+- Send test message
+- Setup Express Listener
 
 ```javascript
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 const port = process.env.PORT || 3001;
 
 app.use(logger('dev'));
 
 app.use((err, req, res, next) => {
-    console.log(err);
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
+  console.log(err);
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
 });
 
-app.listen(port, () => { console.log('Server running on port ' + port) });
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+});
+
+app.listen(port, () => {
+  console.log('Server running on port ' + port);
+});
 ```
 
-
-
-Test by running  `node index` in terminal (Should just read running on port 3001)
+Test by running `node index` in terminal (Should just read running on port 3001)
 
 ## Mongoose/Mongo Model
 
 1. Install mongoose `npm i mongoose`
 2. Create a models directory off of the root of the shoppinglist app
 3. Create a shoppinglist.js file in that folder
-	* Create Schema
-	* Create Model
+   - Create Schema
+   - Create Model
 
 ```javascript
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const ShoppingListSchema = new Schema({ 
-	item: { 
-		type: String, 
-		required: [true, 'The text field is required'] 
-	} 
-})
+const ShoppingListSchema = new Schema({
+  item: {
+    type: String,
+    required: [true, 'The text field is required']
+  }
+});
 
 const ShoppingList = mongoose.model('shoppinglist', ShoppingListSchema);
 
 module.exports = ShoppingList;
 ```
 
-
-
 ## Create Express Routes to handle Model
+
 1. Create routes Folder off of the root of the shoppinglist app
 
 2. Create api.js in the routes folder
 
-   * require express 
-   * init express router
-   * setup 3 routes, **get**, **post** and **delete** (req for request, res for response, next for the next function)
+   - require express
+   - init express router
+   - setup 3 routes, **get**, **post** and **delete** (req for request, res for response, next for the next function)
 
 3. Add find, create and findOneAndDelete Methods in Function
 
-   
-
 ```javascript
-
 const express = require('express');
 const router = express.Router();
 const ShoppingList = require('../models/shoppinglist');
 
 router.get('/shoppinglist', (req, res, next) => {
-		ShoppingList
-		.find({}, 'item')
-		.then(data => res.json(data))
-		.catch(next)
+  ShoppingList.find({}, 'item')
+    .then((data) => res.json(data))
+    .catch(next);
 });
 
 router.post('/shoppinglist', (req, res, next) => {
-    if (req.body.item) {
-        ShoppingList
-            .create(req.body)
-            .then(data => res.json(data))
-            .catch(next);
-    }
-    else {
-        res.json({ error: "The item field is empty" })
-    }
+  if (req.body.item) {
+    ShoppingList.create(req.body)
+      .then((data) => res.json(data))
+      .catch(next);
+  } else {
+    res.json({ error: 'The item field is empty' });
+  }
 });
 
 router.delete('/shoppinglist/:id', (req, res, next) => {
-    ShoppingList.findOneAndDelete({ "_id": req.params.id })
-        .then(data => res.json(data))
-        .catch(next)
-})
+  ShoppingList.findOneAndDelete({ _id: req.params.id })
+    .then((data) => res.json(data))
+    .catch(next);
+});
 
 module.exports = router;
 ```
 
-
-
 ## Update index.js to handle routes and connections
+
 1. We will need need to libraries, body parse for our post, mongoose for our database, routes and path
 2. Connect to database (we will setup the DB environment variable in the .env we will create next)
-
-   
 
 ```javascript
 const express = require('express');
@@ -141,27 +139,26 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3001;
 
-mongoose.connect(process.env.DB,
-{ useNewUrlParser: true, useUnifiedTopology: true })
-	.then(() => console.log('Database connected successfully'))
-	.catch(err => console.log(err)
-);
+mongoose
+  .connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Database connected successfully'))
+  .catch((err) => console.log(err));
 
 app.use(logger('dev'));
 
 app.use(bodyParser.json());
 app.use('/api', routes);
 app.use((err, req, res, next) => {
-    console.log(err);
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
+  console.log(err);
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
 });
 
-app.listen(port, () => { console.log('Server running on port ' + port) });
+app.listen(port, () => {
+  console.log('Server running on port ' + port);
+});
 ```
-
-
 
 ## Setup Remote Mongo Database on mlab / Create .env file
 
@@ -171,25 +168,26 @@ app.listen(port, () => { console.log('Server running on port ' + port) });
 
 3. Create a `.env` file on your root of the application. Add your db connection to it.
 
-  * `DB = 'mongodb://chrisuser:guestpass123@ds227865.mlab.com:27865/heroku_lwwghkmr'`
-    //This will be used my the mongoose connection string. 
+- `DB = 'mongodb://chrisuser:guestpass123@ds227865.mlab.com:27865/heroku_lwwghkmr'`
+  //This will be used my the mongoose connection string.
 
-4. You can also setup a local db instance and replace the .env DB location with your own db	
+4. You can also setup a local db instance and replace the .env DB location with your own db
 
-   
 ### Test Your Endpoints Using Postman
+
 1. node index.js
 2. Get by using GET http://localhost:3001/api/shoppinglist
 3. Post by using POST http://localhost:3001/api/shoppinglist with json {"item":"cheese"}
 4. Delete by using DELETE localhost:3001/api/shoppinglist/5e4ae903c544711c71125245 or whatever any of the unique items are
 
 ## Front End React
-In the  root directory. 
+
+In the root directory.
 
 1. Run `create-react-app client` This will setup the basic scaffolding for react.
-2. *note*: dependences from the root folder. Concurrently to run scripts, after one other and nodemon to auto restart the server on change. 
+2. _note_: dependences from the root folder. Concurrently to run scripts, after one other and nodemon to auto restart the server on change.
 
-3. Within the root **package.json** file add the following between scripts: 
+3. Within the root **package.json** file add the following between scripts:
 
 ```json
 "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -204,16 +202,16 @@ In the  root directory.
 
 **In the new client folder**
 
-Once create-react-app completes.  You will need to add a proxy, so you we don't need to specify full urls. 
+Once create-react-app completes. You will need to add a proxy, so you we don't need to specify full urls.
 
-1. Edit the /client version  **package.json** file add the following line anywhere on the root node.. (under "private" is fine)  
+1. Edit the /client version **package.json** file add the following line anywhere on the root node.. (under "private" is fine)
 
    `"proxy": "http://localhost:3001",`
 
 #### From the **/client** folder, in terminal, install **Axios** `npm i axios`
 
-
 ## React Components
+
 1. Create a folder inside your src folder, called `components`
 2. Within that folder we will be creating 3 files: Input.js, ListItems.js and Item.js
 
@@ -259,12 +257,12 @@ export default Input
 
 ```
 
+​
 
-​	
 #### Create `ListItems.js` Functional Component in components
 
+​
 
-​    
 ```react
 
 import React from 'react';
@@ -294,9 +292,6 @@ const ListItems = ({ items, deleteItem }) => {
 
 export default ListItems
 ```
-
-
-
 
 #### Create `Item.js` Functional Component in components
 
@@ -348,7 +343,6 @@ export default Item;
 
 ```
 
-
 #### Update App.js to use Item component:
 
 ```react
@@ -368,13 +362,11 @@ const App = () => {
 export default App;
 ```
 
-​	
+​
 
 Run the App:
 
 > ## npm start
-
-
 
 Style to your liking....
 
@@ -469,16 +461,3 @@ li {
   }
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
